@@ -1,0 +1,10 @@
+﻿Hi there!
+
+{{projectCoordinator}} added you to their project {{projectTitle}}.
+The project will now appear on your dashboard.
+
+{{applicationUrl}}/home
+
+Best regards,
+The Ngpt Team
+		

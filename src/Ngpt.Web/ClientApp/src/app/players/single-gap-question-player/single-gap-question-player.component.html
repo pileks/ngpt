@@ -1,0 +1,17 @@
+<div class="block mx-auto max-w-screen-md p-4 rounded">
+    <div class="font-semibold pb-4">
+        {{ instruction }}
+
+        <div *ngIf="anyCaseSensitiveAnswers">
+            {{ 'singleGapQuestionPlayer.caseSensitiveAnswers' | translate}}
+        </div>
+    </div>
+
+    {{ question.textBefore }}
+    <input type="text"
+           [(ngModel)]="answer"
+           (ngModelChange)="onAnswerChange()"
+           class="border-t-0 border-r-0 border-l-0 border-b-2 focus:rounded
+                focus:border-blue-600 ring-blue-600" />
+    {{ question.textAfter }}
+</div>

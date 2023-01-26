@@ -1,0 +1,38 @@
+{
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Warning",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "NgptDbConnection": "Data Source=locahost;initial catalog=Ngpt;integrated security=True;MultipleActiveResultSets=True;"
+  },
+  "LiveReloadInDevEnv": "true",
+  "ApplicationUrl": "http://localhost:50231",
+  "ApiUrl": "http://localhost:50231",
+  "Email": {
+    "LogoUrl": "/mail-logo.png",
+    "IsEnabled": "false",
+    "RedirectSendGridToEmail": "",
+    "AdminEmail": "",
+    "AdminDisplayName": "Amber",
+    "SendGridApiKey": ""
+  },
+  "EmailVerification": {
+    "MaxNumberOfAttempts": "5",
+    "ResendEmailTimeoutInMinutes": "10",
+    "VerificationCodeLength": "6"
+  },
+  "UploadedResources": {
+    "Directory": "C:/uploads"
+  },
+  "Authentication": {
+    "TokenExpirationHours": 24,
+    "EnableMultipleDeviceLogin": true, 
+    "EnableExtendTokenExpiration": true 
+  }
+}

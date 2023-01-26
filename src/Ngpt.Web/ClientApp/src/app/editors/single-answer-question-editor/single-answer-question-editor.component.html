@@ -1,0 +1,118 @@
+<div class="grid grid-cols-12 gap-4">
+    <app-panel class="col-span-12">
+        <div class="grid grid-cols-12 gap-4">
+            <div class="col-span-8">
+                <app-text-input [(ngModel)]="question.questionText"
+                                [disabled]="editorDisabled"
+                                label="{{ 'singleAnswerQuestionEditor.input.questionText' | translate }}">
+                </app-text-input>
+            </div>
+            <div class="col-span-4">
+                <app-select [items]="listAnswerTypes"
+                            itemKey="value"
+                            name="answerType"
+                            label="{{ 'singleAnswerQuestionEditor.input.answerType' | translate }}"
+                            [(ngModel)]="question.answerType"
+                            (ngModelChange)="onModelChange()"
+                            [disabled]="editorDisabled">
+                    <ng-template #option
+                                 let-item>
+                        {{ item.title }}
+                    </ng-template>
+                </app-select>
+            </div>
+            <div class="col-span-12">
+                <label class="block text-sm font-medium text-gray-700">
+                    {{ 'singleAnswerQuestionEditor.answers' | translate }}
+                </label>
+            </div>
+            <ng-container *ngFor="let answer of question.answers">
+                <div class="col-span-12 xl:col-span-10">
+                    <ng-container *ngIf="areAnswersText">
+                        <div class="flex items-center">
+                            <app-text-input [(ngModel)]="answer.text"
+                                            class="flex-grow"
+                                            (ngModelChange)="onModelChange()"
+                                            [disabled]="editorDisabled">
+                            </app-text-input>
+                            <div class="flex items-center ml-2">
+                                <app-toggle [(ngModel)]="answer.isCorrect"
+                                            (ngModelChange)="onModelChange()"
+                                            [disabled]="editorDisabled"
+                                            label="{{ 'singleAnswerQuestionEditor.input.correct' | translate }}">
+                                </app-toggle>
+                            </div>
+                            <button type="button"
+                                    [disabled]="editorDisabled"
+                                    (click)="removeAnswer(answer)"
+                                    class="inline-flex items-center p-1.5 border border-indigo-600 rounded-full shadow-sm
+                                                   text-indigo-600 bg-transparent hover:bg-gray-200
+                                                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                                   disabled:opacity-50
+                                                   flex-grow-0 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-5 w-5"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="areAnswersImages">
+                        <div class="flex items-center">
+                            <app-image-uploader [(ngModel)]="answer.imageId"
+                                                (ngModelChange)="onModelChange()"
+                                                [uploaderDisabled]="editorDisabled"
+                                                class="w-96">
+                            </app-image-uploader>
+                            <div class="flex items-center ml-2">
+                                <app-toggle [(ngModel)]="answer.isCorrect"
+                                            (ngModelChange)="onModelChange()"
+                                            label="{{ 'singleAnswerQuestionEditor.input.correct' | translate }}"
+                                            [disabled]="editorDisabled">
+                                </app-toggle>
+                            </div>
+                            <button type="button"
+                                    (click)="removeAnswer(answer)"
+                                    [disabled]="editorDisabled"
+                                    class="inline-flex items-center p-1.5 border border-indigo-600 rounded-full shadow-sm
+                                                   text-indigo-600 bg-transparent hover:bg-gray-200
+                                                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                                   disabled:opacity-50
+                                                   flex-grow-0 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-5 w-5"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+            <div class="col-span-12">
+                <button type="button"
+                        (click)="addAnswer()"
+                        [disabled]="!canAddAnswer || editorDisabled"
+                        class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                                       border border-transparent text-sm font-medium rounded-full
+                                       shadow-sm text-white bg-indigo-600
+                                       hover:bg-indigo-700
+                                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                       disabled:opacity-50">
+                    {{ 'singleAnswerQuestionEditor.addAnswer' | translate }}
+                </button>
+            </div>
+        </div>
+    </app-panel>
+</div>

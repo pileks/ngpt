@@ -1,0 +1,270 @@
+{
+    "about": {
+        "title": "O softveru"
+    },
+    "answerPreview": {
+        "correct": "Odgovor je točan.",
+        "incorrect": "Odgovor je netočan."
+    },
+    "changePassword": {
+        "backToMyProfile": "Povratak u moj profil.",
+        "changePassword": "Promijeni lozinku",
+        "input": {
+            "confirmNewPassword": "Potvrdi novu lozinku",
+            "error": {
+                "invalidPassword": "Neodgovarajuća lozinka",
+                "passwordsDoNotMatch": "Lozinke se ne podudaraju!"
+            },
+            "newPassword": "Nova lozinka",
+            "oldPassword": "Stara lozinka"
+        },
+        "passwordChangedSuccessfully": "Lozinka uspješno ažurirana!",
+        "title": "Promijeni lozinku"
+    },
+    "dragDropQuestionEditor": {
+        "addPart": "Dodaj dio",
+        "input": {
+            "draggable": "Pomično"
+        },
+        "sentenceParts": "Dijelovi rečenice"
+    },
+    "emailConfirmation": {
+        "emailConfirmed": "Vaš email je potvrđen",
+        "error": {
+            "invalidCode": "Pogrešan kod!",
+            "tooManyFailedAttempts": "Previše neuspjelih pokušaja! Za ponovni pokušaj kliknite na \"Ponovo pošalji verifikacijski kod\"",
+            "tooManyFailedAttemptsWait": "Previše neuspjelih pokušaja! Molim sačekajte i onda kliknite na \"Ponovo pošalji verifikacijski kod\""
+        },
+        "goToDashboard": "Idi na početnu stranicu",
+        "input": {
+            "verificationCode": "Verifikacijski kod..."
+        },
+        "resendVerificationCode": "Ponovo pošalji verifikacijski kod",
+        "signOut": "Odjava",
+        "title": "Potvrdite svoj e-mail",
+        "verificationCodeSentToEmail": "E-mail s verifikacijskim kodom je poslan na {{email}}. Molimo unesite kod iz emaila u polje ispod."
+    },
+    "generic": {
+        "approve": "Odobriti",
+        "back": "Natrag",
+        "cancel": "Odustani",
+        "confirm": "Potvrdi",
+        "create": "Kreiraj",
+        "delete": "Izbriši",
+        "loading": "Učitava se",
+        "next": "Slijedeći",
+        "preview": "Pregled",
+        "refreshPreview": "Osvježi pregled",
+        "reset": "Resetiraj",
+        "save": "Sačuvaj",
+        "submit": "Pošalji",
+        "unapprove": "Ne odobriti"
+    },
+    "home": {
+        "welcome": "Dobrodošli,"
+    },
+    "instruction": {
+        "list": {
+            "title": "Upute"
+        },
+        "update": {
+            "input": {
+                "language": "Jezik",
+                "questionType": "Tip pitanja",
+                "text": "Tekst"
+            },
+            "title": "Uputa"
+        }
+    },
+    "listeningAudio": {
+        "list": {
+            "title": "Slušanje: audio"
+        },
+        "update": {
+            "input": {
+                "language": "Jezik",
+                "level": "Razina",
+                "title": "Naslov"
+            },
+            "title": "Slušanje: audio"
+        }
+    },
+    "listeningQuestion": {
+        "list": {
+            "title": "Slušanje: piatnja"
+        },
+        "update": {
+            "addAnswer": "Dodaj odgovor",
+            "answers": "Odgovori",
+            "input": {
+                "answerType": "Tip odgovora",
+                "audio": "Audio",
+                "correct": "Točno",
+                "language": "Jezik",
+                "level": "Razina",
+                "question": "Pitanje"
+            },
+            "title": "Slušanje: pitanja"
+        }
+    },
+    "listeningQuestionPlayer": {
+        "manyPlaysRemaining": "Ovu vježbu možete poslušati još {{count}} puta.",
+        "noPlaysRemaining": "Nemate pravo ponovo poslušati.",
+        "onePlayRemaining": "Možete poslušati još jedan put.",
+        "playAudio": "Pusti audio"
+    },
+    "login": {
+        "error": {
+            "invalidEmailOrPassword": "Pogrešan email ili lozinka!"
+        },
+        "forgotYourPassword": "Zaboravljena lozinka",
+        "input": {
+            "email": "E-mail",
+            "password": "Lozinka"
+        },
+        "register": "Registrirajte svoju organizaciju",
+        "signIn": "Prijava",
+        "title": "Prijavite se u svoj korisnički račun"
+    },
+    "multipleChoiceQuestionEditor": {
+        "addOptions": "Dodaj izbor",
+        "addText": "Dodaj tekst",
+        "input": {
+            "correct": "Točno",
+            "text": "Tekst:"
+        },
+        "options": "Izbori:",
+        "removeLastPart": "Ukloni {{lastPart}}"
+    },
+    "navigationMenu": {
+        "about": "O softveru",
+        "formTest": "",
+        "home": "Početna",
+        "instructions": "Upute",
+        "listeningAudio": "Slušanje: audio",
+        "listeningQuestions": "Slušanje: pitanja",
+        "myProfile": "Moj profil",
+        "organizationUsers": "Korisnici organizacije",
+        "readingQuestionTexts": "Čitanje: tekstovi",
+        "readingQuestions": "Čitanje: pitanja",
+        "signOut": "Odjava",
+        "useOfLanguageQuestions": "Use of Language pitanja",
+        "users": "Korisnici"
+    },
+    "organizationUser": {
+        "list": {
+            "title": "Korisnici organizacije"
+        },
+        "update": {
+            "input": {
+                "admin": "Administrator",
+                "email": "E-mail",
+                "name": "Ime",
+                "password": "Lozinka"
+            }
+        }
+    },
+    "privacyPolicy": {
+        "title": "Pravila privatnosti"
+    },
+    "readingQuestion": {
+        "list": {
+            "title": "Čitanje: pitanja"
+        },
+        "update": {
+            "addAnswer": "Dodaj odgovor",
+            "answers": "Odgovori",
+            "input": {
+                "answerType": "Tip odgovora",
+                "correct": "Točno",
+                "language": "Jezik",
+                "level": "Razina",
+                "question": "Pitanja",
+                "text": "Tekst"
+            },
+            "title": "Čitanje: pitanja"
+        }
+    },
+    "readingQuestionText": {
+        "list": {
+            "title": "Čitanje: tekstovi"
+        },
+        "update": {
+            "addQuestion": "Dodaj pitanje",
+            "input": {
+                "language": "Jezik",
+                "level": "Razina",
+                "text": "Tekst",
+                "title": "Naslov"
+            },
+            "title": "Čitanje: tekst"
+        }
+    },
+    "registration": {
+        "alreadyHaveAnAccount": "Već imate korisnički račun? Prijavite se ovdje",
+        "error": {
+            "emailRegistered": "Ovaj email je već vezan uz postojeći korisnički račun!"
+        },
+        "input": {
+            "confirmPassword": "Potvrdi lozinku",
+            "email": "E-mail",
+            "name": "Vaše ime",
+            "organizationName": "Naziv Vaše organizacije",
+            "password": "Lozinka"
+        },
+        "register": "Registriraj se",
+        "title": "Napravi korisnički račun"
+    },
+    "resetPassword": {
+        "backToSignIn": "Povratak na prijavu",
+        "input": {
+            "email": "E-mail"
+        },
+        "resetEmailSent": "Molim Vas provjerite svoj email za upute o resetiranju lozinke.",
+        "title": "Resetiraj lozinku"
+    },
+    "setNewPassword": {
+        "backToSignIn": "Povratak na prijavu",
+        "input": {
+            "confirmPassword": "Potvrdi lozinku",
+            "password": "Lozinka"
+        },
+        "title": "Postavi novu lozinku"
+    },
+    "singleAnswerQuestionEditor": {
+        "addAnswer": "Dodaj odgovor",
+        "answers": "Odgovori",
+        "input": {
+            "answerType": "Tip odgovora",
+            "correct": "Točno",
+            "questionText": "Tekst pitanja"
+        }
+    },
+    "singleGapQuestionEditor": {
+        "addAnswer": "Dodaj odgovor",
+        "input": {
+            "answer": "Odgovor",
+            "caseSensitive": "Osjetljivo na veliko/malo slovo",
+            "textAfter": "Tekst nakon",
+            "textBefore": "Tekst prije"
+        }
+    },
+    "singleGapQuestionPlayer": {
+        "caseSensitiveAnswers": "Odgovori su osjetljivi na velika i mala slova."
+    },
+    "useOfLanguageQuestion": {
+        "list": {
+            "title": "Use of Language pitanja"
+        },
+        "update": {
+            "input": {
+                "instruction": "Uputa",
+                "language": "Jezik",
+                "level": "Razina",
+                "questionType": "Tip pitanja",
+                "title": "Naslov"
+            },
+            "title": "Use of Language pitanje"
+        }
+    }
+}

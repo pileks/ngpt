@@ -1,0 +1,16 @@
+<div class="block mx-auto max-w-screen-md p-4 border-2 border-dashed border-gray-300 rounded">
+    <div class="grid gap-6">
+        <h3 class="text-2xl font-semibold">
+            {{ question.text.title }}
+        </h3>
+        <p class="whitespace-pre-wrap"
+           [innerText]="question.text.text">
+        </p>
+        <h4 class="text-lg font-semibold">
+            {{ question.questionText }}
+        </h4>
+        <app-reading-listening-question-answer-picker [question]="question"
+                                                      (answerChange)="onAnswerChange($event)">
+        </app-reading-listening-question-answer-picker>
+    </div>
+</div>

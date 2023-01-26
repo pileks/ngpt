@@ -1,0 +1,24 @@
+.hello-section {
+    max-width: 450px;
+    margin: 0 auto 0;
+}
+
+.component-wrapper {
+    border-style: solid;
+    border-radius: 1rem;
+    padding: 2rem;
+    border-width: 1px;
+}
+
+div.card {
+    margin-bottom: 1rem;
+}
+
+div.card:hover {
+    cursor: pointer;
+}
+
+div.row {
+    margin-bottom: 1rem;
+}
+

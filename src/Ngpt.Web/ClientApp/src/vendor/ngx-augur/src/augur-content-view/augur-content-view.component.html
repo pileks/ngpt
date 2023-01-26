@@ -1,0 +1,18 @@
+<ng-container *ngIf="!loading">
+    <div class="pb-4">
+        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    </div>
+
+    <ng-container>
+        <ng-container *ngTemplateOutlet="bodyTemplate"></ng-container>
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="loading && !hideHeaderWhileLoading">
+    <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    <augur-loading-indicator [loading]="true"></augur-loading-indicator>
+</ng-container>
+
+<ng-container *ngIf="loading && hideHeaderWhileLoading">
+    <augur-loading-indicator [loading]="true"></augur-loading-indicator>
+</ng-container>

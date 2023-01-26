@@ -1,0 +1,185 @@
+<app-page-with-navigation-menu>
+    <ng-template #content>
+        <app-content-view [loading]="isEntityLoading">
+            <ng-template #header>
+                <app-simple-heading>
+                    <ng-container header>
+                        {{ 'readingQuestion.update.title' | translate }}
+                    </ng-container>
+                    <ng-container actions>
+                        <button type="button"
+                                *ngIf="id"
+                                (click)="delete()"
+                                class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{ 'generic.delete' | translate }}
+                        </button>
+                    </ng-container>
+                </app-simple-heading>
+            </ng-template>
+            <ng-template #body>
+                <form #form="ngForm"
+                      (ngSubmit)="submit()">
+                    <div class="grid grid-cols-12 gap-4">
+                        <app-panel class="col-span-12">
+                            <div class="grid grid-cols-12 gap-4">
+                                <div class="col-span-6">
+                                    <app-select [items]="answerTypes"
+                                                itemKey="value"
+                                                required
+                                                name="answerType"
+                                                label="{{ 'readingQuestion.update.input.answerType' | translate }}"
+                                                [(ngModel)]="entity.answerType">
+                                        <ng-template #option
+                                                     let-item>
+                                            {{ item.title }}
+                                        </ng-template>
+                                    </app-select>
+                                </div>
+                                <div class="col-span-12">
+                                    <p *ngIf="entity.text"
+                                       class="p-4">
+                                        {{ entity.text.text }}
+                                    </p>
+                                </div>
+                                <app-text-input [(ngModel)]="entity.questionText"
+                                                required
+                                                name="questionText"
+                                                label="{{ 'readingQuestion.update.input.question' | translate }}"
+                                                class="col-span-12"></app-text-input>
+                                <div class="col-span-12">
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        {{ 'readingQuestion.update.answers' | translate }}
+                                    </label>
+                                </div>
+                                <ng-container *ngFor="let answer of entity.answers; let i = index;">
+                                    <div class="col-span-12 xl:col-span-10">
+                                        <ng-container *ngIf="areAnswersText">
+                                            <div class="flex items-center">
+                                                <app-text-input [(ngModel)]="answer.text"
+                                                                required
+                                                                name="answer{{i}}"
+                                                                class="flex-grow"></app-text-input>
+                                                <div class="flex items-center ml-2">
+                                                    <app-toggle [(ngModel)]="answer.isCorrect"
+                                                                name="answerCorrect{{i}}"
+                                                                label="{{ 'readingQuestion.update.input.correct' | translate }}"
+                                                                class=""></app-toggle>
+                                                </div>
+                                                <button type="button"
+                                                        (click)="removeAnswer(answer)"
+                                                        class="inline-flex items-center p-1.5 border border-indigo-600 rounded-full shadow-sm
+                                                   text-indigo-600 bg-transparent hover:bg-gray-200
+                                                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                                   disabled:opacity-50
+                                                   flex-grow-0 ml-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                         class="h-5 w-5"
+                                                         fill="none"
+                                                         viewBox="0 0 24 24"
+                                                         stroke="currentColor">
+                                                        <path stroke-linecap="round"
+                                                              stroke-linejoin="round"
+                                                              stroke-width="2"
+                                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="areAnswersImages">
+                                            <div class="flex items-center">
+                                                <app-image-uploader [(ngModel)]="answer.imageId"
+                                                                    name="answer{{i}}"
+                                                                    class="w-96"></app-image-uploader>
+                                                <div class="flex items-center ml-2">
+                                                    <app-toggle [(ngModel)]="answer.isCorrect"
+                                                                name="answerCorrect{{i}}"
+                                                                label="{{ 'readingQuestion.update.input.correct' | translate }}"
+                                                                class=""></app-toggle>
+                                                </div>
+                                                <button type="button"
+                                                        (click)="removeAnswer(answer)"
+                                                        class="inline-flex items-center p-1.5 border border-indigo-600 rounded-full shadow-sm
+                                                   text-indigo-600 bg-transparent hover:bg-gray-200
+                                                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                                   disabled:opacity-50
+                                                   flex-grow-0 ml-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                         class="h-5 w-5"
+                                                         fill="none"
+                                                         viewBox="0 0 24 24"
+                                                         stroke="currentColor">
+                                                        <path stroke-linecap="round"
+                                                              stroke-linejoin="round"
+                                                              stroke-width="2"
+                                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </ng-container>
+                                <div class="col-span-12">
+                                    <button type="button"
+                                            (click)="addAnswer()"
+                                            [disabled]="!canAddAnswer"
+                                            class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                                       border border-transparent text-sm font-medium rounded-full
+                                       shadow-sm text-white bg-indigo-600
+                                       hover:bg-indigo-700
+                                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                       disabled:opacity-50">
+                                        {{ 'readingQuestion.update.addAnswer' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </app-panel>
+                        <div class="col-span-12 grid gap-2">
+                            <button type="button"
+                                    (click)="preview()"
+                                    [disabled]="!form.valid || !entity.textId || !isAtLeastOneAnswerCorrect"
+                                    class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                                       border border-transparent text-sm font-medium rounded-full
+                                       shadow-sm text-white bg-indigo-600
+                                       hover:bg-indigo-700
+                                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                       disabled:opacity-50">
+                                <span *ngIf="!previewQuestion">
+                                    {{ 'generic.preview' | translate }}
+                                </span>
+                                <span *ngIf="previewQuestion">
+                                    {{ 'generic.refreshPreview' | translate }}
+                                </span>
+                            </button>
+                            <ng-container *ngIf="previewQuestion">
+                                <app-reading-question-player [question]="previewQuestion"
+                                                             (answerChange)="onPreviewAnswerChange($event)">
+                                </app-reading-question-player>
+                                <app-answer-preview [correct]="isPreviewAnsweredCorrectly"></app-answer-preview>
+                            </ng-container>
+                        </div>
+                        <div class="col-span-12">
+                            <button type="submit"
+                                    [disabled]="!form.valid || !entity.textId || !isAtLeastOneAnswerCorrect"
+                                    class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                                       border border-transparent text-sm font-medium rounded-full
+                                       shadow-sm text-white bg-indigo-600
+                                       hover:bg-indigo-700
+                                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                       disabled:opacity-50">
+                                {{ 'generic.save' | translate }}
+                            </button>
+                            <button type="button"
+                                    (click)="cancel()"
+                                    class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                                       border border-indigo-600 text-sm font-medium rounded-full
+                                       shadow-sm text-indigo-600 bg-transparent
+                                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                {{ 'generic.cancel' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

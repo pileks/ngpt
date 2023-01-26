@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.49.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\augurnet\Augur.Data\Augur.Data.csproj" />
+    <ProjectReference Include="..\augurnet\Augur.Repositories\Augur.Repositories.csproj" />
+    <ProjectReference Include="..\augurnet\Augur.Security\Augur.Security.csproj" />
+    <ProjectReference Include="..\Ngpt.Data\Ngpt.Data.csproj" />
+  </ItemGroup>
+
+</Project>

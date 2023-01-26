@@ -1,0 +1,16 @@
+<label [for]="innerId"
+       class="block text-sm font-medium text-gray-700">
+    {{label}}
+</label>
+<div class="mt-1">
+    <textarea [(ngModel)]="value"
+              (ngModelChange)="updateChanges()"
+              [id]="innerId"
+              [required]="isRequired"
+              [rows]="rows"
+              [disabled]="disabled"
+              class="shadow-sm block w-full border-gray-300 rounded-md
+                     focus:ring-indigo-500 focus:border-indigo-500
+                     sm:text-sm disabled:opacity-75">
+    </textarea>
+</div>

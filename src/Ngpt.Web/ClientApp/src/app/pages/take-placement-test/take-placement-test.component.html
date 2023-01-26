@@ -1,0 +1,25 @@
+<div class="container mx-auto h-full flex flex-col">
+    <div>
+        <div class="mx-auto max-w-screen-md pb-4">
+            <img class="h-32 w-auto -ml-3"
+                 src="assets/img/logo.svg"
+                 alt="NGPT logo">
+        </div>
+    </div>
+
+    <div class="flex-grow">
+        <app-placement-test-player [placementTestId]="placementTestId"
+                                   (onTestCompleted)="onTestCompleted()"
+                                   [debug]="isDebugEnabled"
+                                   [tau]="tau"
+                                   [rd]="rd"
+                                   [vol]="vol"
+                                   [rdCutoff]="rdCutoff">
+
+        </app-placement-test-player>
+    </div>
+
+    <div class="pt-8 pb-4">
+        <img class="mx-auto h-12" src="/assets/img/erasmus-logo.png" />
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<app-page-with-navigation-menu>
+    <ng-template #navigation>
+        <app-navigation-menu></app-navigation-menu>
+    </ng-template>
+    
+    <ng-template #content>
+        <app-content-view>
+            <ng-template #header>
+                <h4 class="d-inline">Users</h4>
+            </ng-template>
+
+            <ng-template #body>
+                <div class="row">
+                    <augur-text-input
+                        class="col-sm-3 mb-2"
+                        name="searchInput"
+                        placeholder="Search..."
+                        [(model)]="dataSource.searchQuery"
+                    >
+                    </augur-text-input>
+                </div>
+
+                <augur-grid
+                    *ngIf="!dataSource.isLoading"
+                    disableLoadOnInit="true"
+                    [dataSource]="dataSource"
+                    [columns]="columns"
+                    (onRowClicked)="onRowClicked($event)"
+                    [(columnFilter)]="columnFilter"
+                    class="block"
+                >
+                </augur-grid>
+
+                <augur-loading-indicator
+                    [loading]="dataSource.isLoading"
+                ></augur-loading-indicator>
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

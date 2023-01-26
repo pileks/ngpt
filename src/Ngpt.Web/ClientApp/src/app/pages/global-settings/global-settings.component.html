@@ -1,0 +1,37 @@
+<app-page-with-navigation-menu>
+    <ng-template #navigation>
+        <app-navigation-menu></app-navigation-menu>
+    </ng-template>
+
+    <ng-template #content>
+        <app-content-view [loading]="areSettingsLoading">
+            <ng-template #header>
+                <h4>Settings</h4>
+            </ng-template>
+
+            <ng-template #body>
+                <div class="card text-center">
+                    <div class="row my-3">
+                        <div class="col">
+                            <p>
+                                No settings yet...
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col">
+                            <button name="updateBtn"
+                                    class="btn btn-success"
+                                    type="button"
+                                    [disabled]="areSettingsLoading || !isValid()"
+                                    (click)="update()">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

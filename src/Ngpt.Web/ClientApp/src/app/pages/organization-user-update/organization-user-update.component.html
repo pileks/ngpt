@@ -1,0 +1,65 @@
+<app-page-with-navigation-menu>
+    <ng-template #content>
+        <app-content-view [loading]="isEntityLoading">
+            <ng-template #body>
+                <form #form="ngForm"
+                      autocomplete="off"
+                      (ngSubmit)="submit()">
+                    <div class="grid grid-cols-12 gap-4">
+                        <app-panel class="col-span-12">
+                            <div class="grid grid-cols-12 gap-4">
+
+                                <app-text-input [(ngModel)]="entity.email"
+                                                label="Email"
+                                                name="orgUserEmail"
+                                                class="col-span-12"></app-text-input>
+
+                                <app-text-input [(ngModel)]="entity.name"
+                                                label="Name"
+                                                name="orgUserName"
+                                                class="col-span-12"></app-text-input>
+
+                                <div class="col-span-12">
+                                    <label for="orgUserPassword"
+                                           class="block text-sm font-medium text-gray-700">
+                                        Password
+                                    </label>
+                                    <div class="mt-1">
+                                        <input [(ngModel)]="entity.password"
+                                               name="orgUserPassword"
+                                               type="password"
+                                               class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
+                                                focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
+                                                sm:text-sm">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-12">
+                                    <div class="flex items-center ml-2">
+                                        <app-toggle [(ngModel)]="entity.isOrgAdmin"
+                                                    label="Admin"
+                                                    name="isOrgAdmin"
+                                                    class=""></app-toggle>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </app-panel>
+                        <div class="col-span-12">
+                            <button type="submit"
+                                    [disabled]="isEntityLoading || !isValid() || isThisUserLoggedInUser"
+                                    class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                                        border border-transparent text-sm font-medium rounded-full
+                                        shadow-sm text-white bg-indigo-600
+                                        hover:bg-indigo-700
+                                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                        disabled:opacity-50">
+                                {{ 'generic.save' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

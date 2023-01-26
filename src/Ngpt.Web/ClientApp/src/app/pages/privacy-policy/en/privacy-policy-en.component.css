@@ -1,0 +1,12 @@
+.logo{
+    max-width: 500px;
+}
+
+h3, h4, h5, p, ul {
+    margin-bottom: 2rem;
+}
+
+p, ul {
+    font-size: 1.15rem;
+    line-height: 1.75rem;
+}

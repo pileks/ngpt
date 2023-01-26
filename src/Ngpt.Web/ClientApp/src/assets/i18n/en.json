@@ -1,0 +1,270 @@
+{
+    "about": {
+        "title": "About"
+    },
+    "answerPreview": {
+        "correct": "The question is answered correctly.",
+        "incorrect": "The question is not answered correctly."
+    },
+    "changePassword": {
+        "backToMyProfile": "Back to my profile",
+        "changePassword": "Change password",
+        "input": {
+            "confirmNewPassword": "Confirm new password",
+            "error": {
+                "invalidPassword": "Invalid password!",
+                "passwordsDoNotMatch": "Passwords do not match!"
+            },
+            "newPassword": "New password",
+            "oldPassword": "Old password"
+        },
+        "passwordChangedSuccessfully": "Password changed successfully!",
+        "title": "Change password"
+    },
+    "dragDropQuestionEditor": {
+        "addPart": "Add part",
+        "input": {
+            "draggable": "Draggable"
+        },
+        "sentenceParts": "Sentence parts"
+    },
+    "emailConfirmation": {
+        "emailConfirmed": "Your email has been confirmed!",
+        "error": {
+            "invalidCode": "Invalid code!",
+            "tooManyFailedAttempts": "Too many failed attempts!\nTo retry click \"Resend verification code\"",
+            "tooManyFailedAttemptsWait": "Too many failed attempts!\nPlease wait and then click \"Resend verification code\""
+        },
+        "goToDashboard": "Go to dashboard",
+        "input": {
+            "verificationCode": "Verification code..."
+        },
+        "resendVerificationCode": "Resend verification code",
+        "signOut": "Sign out",
+        "title": "Verify your email",
+        "verificationCodeSentToEmail": "An email with a verification code has been sent to {{email}}.\nPlease enter the code from the e-mail below:"
+    },
+    "generic": {
+        "approve": "Approve",
+        "back": "Back",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "create": "Create",
+        "delete": "Delete",
+        "loading": "Loading",
+        "next": "Next",
+        "preview": "Preview",
+        "refreshPreview": "Refresh preview",
+        "reset": "Reset",
+        "save": "Save",
+        "submit": "Submit",
+        "unapprove": "Unapprove"
+    },
+    "home": {
+        "welcome": "Welcome,"
+    },
+    "instruction": {
+        "list": {
+            "title": "Instructions"
+        },
+        "update": {
+            "input": {
+                "language": "Language",
+                "questionType": "Question type",
+                "text": "Text"
+            },
+            "title": "Instruction"
+        }
+    },
+    "listeningAudio": {
+        "list": {
+            "title": "Listening audio"
+        },
+        "update": {
+            "input": {
+                "language": "Language",
+                "level": "Level",
+                "title": "Title"
+            },
+            "title": "Listening audio"
+        }
+    },
+    "listeningQuestion": {
+        "list": {
+            "title": "Listening questions"
+        },
+        "update": {
+            "addAnswer": "Add answer",
+            "answers": "Answers",
+            "input": {
+                "answerType": "Answer type",
+                "audio": "Audio",
+                "correct": "Correct",
+                "language": "Language",
+                "level": "Level",
+                "question": "Question"
+            },
+            "title": "Listening question"
+        }
+    },
+    "listeningQuestionPlayer": {
+        "manyPlaysRemaining": "You can listen to this exercise {{count}} more times.",
+        "noPlaysRemaining": "You can't listen to this exercise any more.",
+        "onePlayRemaining": "You can listen to this exercise 1 more time.",
+        "playAudio": "Play audio"
+    },
+    "login": {
+        "error": {
+            "invalidEmailOrPassword": "Invalid email or password!"
+        },
+        "forgotYourPassword": "Forgot your password?",
+        "input": {
+            "email": "Email address",
+            "password": "Password"
+        },
+        "register": "Register your school/organization",
+        "signIn": "Sign in",
+        "title": "Sign in to your account"
+    },
+    "multipleChoiceQuestionEditor": {
+        "addOptions": "Add options",
+        "addText": "Add text",
+        "input": {
+            "correct": "Correct",
+            "text": "Text:"
+        },
+        "options": "Options:",
+        "removeLastPart": "Remove {{lastPart}}"
+    },
+    "navigationMenu": {
+        "about": "About",
+        "formTest": "Form test",
+        "home": "Home",
+        "instructions": "Instructions",
+        "listeningAudio": "Listening audio",
+        "listeningQuestions": "Listening questions",
+        "myProfile": "My profile",
+        "organizationUsers": "Organization users",
+        "readingQuestionTexts": "Reading texts",
+        "readingQuestions": "Reading questions",
+        "signOut": "Sign out",
+        "useOfLanguageQuestions": "Use of language questions",
+        "users": "Users"
+    },
+    "organizationUser": {
+        "list": {
+            "title": "Organization users"
+        },
+        "update": {
+            "input": {
+                "admin": "Admin",
+                "email": "Email",
+                "name": "Name",
+                "password": "Password"
+            }
+        }
+    },
+    "privacyPolicy": {
+        "title": "Privacy policy"
+    },
+    "readingQuestion": {
+        "list": {
+            "title": "Reading questions"
+        },
+        "update": {
+            "addAnswer": "Add answer",
+            "answers": "Answers",
+            "input": {
+                "answerType": "Answer type",
+                "correct": "Correct",
+                "language": "Language",
+                "level": "Level",
+                "question": "Question",
+                "text": "Text"
+            },
+            "title": "Reading question"
+        }
+    },
+    "readingQuestionText": {
+        "list": {
+            "title": "Reading texts"
+        },
+        "update": {
+            "addQuestion": "Add question",
+            "input": {
+                "language": "Language",
+                "level": "Level",
+                "text": "Text",
+                "title": "Title"
+            },
+            "title": "Reading text"
+        }
+    },
+    "registration": {
+        "alreadyHaveAnAccount": "Already have an account? Log in here",
+        "error": {
+            "emailRegistered": "This email address is already registered!"
+        },
+        "input": {
+            "confirmPassword": "Confirm password",
+            "email": "Email",
+            "name": "Your name",
+            "organizationName": "Your organization's name",
+            "password": "Password"
+        },
+        "register": "Register",
+        "title": "Create an account"
+    },
+    "resetPassword": {
+        "backToSignIn": "Back to sign in",
+        "input": {
+            "email": "Email"
+        },
+        "resetEmailSent": "Password reset email sent!\nCheck your inbox for an email with reset instructions.",
+        "title": "Reset password"
+    },
+    "setNewPassword": {
+        "backToSignIn": "Back to sign in",
+        "input": {
+            "confirmPassword": "Confirm password",
+            "password": "Password"
+        },
+        "title": "Set new password"
+    },
+    "singleAnswerQuestionEditor": {
+        "addAnswer": "Add answer",
+        "answers": "Answers",
+        "input": {
+            "answerType": "Answer type",
+            "correct": "Correct",
+            "questionText": "Question text"
+        }
+    },
+    "singleGapQuestionEditor": {
+        "addAnswer": "Add answer",
+        "input": {
+            "answer": "Answer",
+            "caseSensitive": "Case sensitive",
+            "textAfter": "Text after",
+            "textBefore": "Text before"
+        }
+    },
+    "singleGapQuestionPlayer": {
+        "caseSensitiveAnswers": "Answers are case sensitive."
+    },
+    "useOfLanguageQuestion": {
+        "list": {
+            "title": "Use of language questions"
+        },
+        "update": {
+            "input": {
+                "instruction": "Instruction",
+                "language": "Language",
+                "level": "Level",
+                "questionType": "Question type",
+                "title": "Title"
+            },
+            "title": "Use of language question"
+        }
+    }
+}

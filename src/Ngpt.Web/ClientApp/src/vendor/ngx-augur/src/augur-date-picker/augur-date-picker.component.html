@@ -1,0 +1,15 @@
+<div class="input-group {{classes}}">
+
+  <div class="input-container full-width">
+      <input type="text" class="form-control augur-date-picker" ngbDatepicker #d="ngbDatepicker" placeholder="{{placeholder}}" [(ngModel)]="localModel" [readonly]="true" (click)="d.open()" [disabled]="disabled" [required]="required"/>
+
+      <div class="icon-container" *ngIf="localModel && !disabled">
+          <fa-icon class="" icon="times" (click)="removeSelection()"></fa-icon>
+      </div>
+  </div>
+
+  <!--<div class="input-group-append">
+      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+  </div>-->
+
+</div>

@@ -1,0 +1,72 @@
+<div class="grid grid-cols-12 gap-4">
+    <app-panel class="col-span-12">
+        <label class="block text-sm font-medium text-gray-700">
+            {{ 'dragDropQuestionEditor.sentenceParts' | translate }}
+        </label>
+        <div class="grid grid-cols-1 gap-2 mt-2"
+             cdkDropList
+             (cdkDropListDropped)="drop($event)">
+            <ng-container *ngFor="let part of sortedParts()">
+                <div class="flex items-center p-2 border"
+                     cdkDrag
+                     [cdkDragDisabled]="editorDisabled">
+                    <div class="flex-grow-0 p-2 pl-0 cursor-move"
+                         cdkDragHandle>
+                        <svg class="h-5 w-5"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                  clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <app-text-input [(ngModel)]="part.text"
+                                    class="flex-grow"
+                                    name="{{name}}text{{part.ordinal}}"
+                                    id="{{name}}text{{part.ordinal}}"
+                                    (ngModelChange)="updateChanges()"
+                                    [disabled]="editorDisabled">
+                    </app-text-input>
+                    <app-toggle [(ngModel)]="part.isDraggable"
+                                label="{{ 'dragDropQuestionEditor.input.draggable' | translate }}"
+                                class="mx-2"
+                                name="{{name}}draggable{{part.ordinal}}"
+                                id="{{name}}draggable{{part.ordinal}}"
+                                (ngModelChange)="updateChanges()"
+                                [disabled]="editorDisabled">
+                    </app-toggle>
+                    <button type="button"
+                            (click)="removePart(part)"
+                            [disabled]="!canRemovePart || editorDisabled"
+                            class="inline-flex items-center p-1.5 border border-indigo-600 rounded-full shadow-sm
+                                           text-indigo-600 bg-transparent hover:bg-gray-200
+                                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                           disabled:opacity-50
+                                           flex-grow-0 ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="h-5 w-5"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </button>
+                </div>
+            </ng-container>
+            <button type="button"
+                    (click)="addPart()"
+                    [disabled]="editorDisabled"
+                    class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                               border border-transparent text-sm font-medium rounded-full
+                               shadow-sm text-white bg-indigo-600
+                               hover:bg-indigo-700
+                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                {{ 'dragDropQuestionEditor.addPart' | translate }}
+            </button>
+        </div>
+    </app-panel>
+</div>

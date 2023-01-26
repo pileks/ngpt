@@ -1,0 +1,91 @@
+<app-page-with-navigation-menu>
+    <ng-template #navigation>
+        <app-navigation-menu></app-navigation-menu>
+    </ng-template>
+    
+    <ng-template #content>
+        <app-content-view [loading]="isEntityLoading">
+            <ng-template #header>
+                <h4 *ngIf="id">Update user</h4>
+                <h4 *ngIf="!id">Add user</h4>
+            </ng-template>
+
+            <ng-template #body>
+                <div class="card">
+                    <div class="row m-3">
+                        <div class="col-md-12 row mb-3">
+
+                            <div class="col-md-6 form-group">
+                                <label>Email</label>
+                                <augur-text-input
+                                    placeholder="Email..."
+                                    [(model)]="entity.email"
+                                >
+                                </augur-text-input>
+                            </div>
+
+                            <div class="col-md-6">
+
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label style="height: 24px;"></label>
+                                <div>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="mr-3"
+                                            [(ngModel)]="entity.isActive"
+                                        />
+                                        Active
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label style="height: 24px;"></label>
+                                <div>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="mr-3"
+                                            [(ngModel)]="entity.isSuperAdmin"
+                                        />
+                                        Super admin
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label style="height: 24px;"></label>
+                                <div>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            class="mr-3"
+                                            [(ngModel)]="entity.isOrgAdmin"
+                                        />
+                                        Organization admin
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button
+                                name="updateBtn"
+                                class="btn btn-success pull-right"
+                                type="button"
+                                *ngIf="id"
+                                [disabled]="isEntityLoading || !isValid() || isThisUserLoggedInUser"
+                                (click)="update()"
+                            >
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

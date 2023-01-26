@@ -1,0 +1,9 @@
+﻿Hi there!
+
+You have been invited by {{projectCoordinator}} to be a part of their project {{projectTitle}}.
+Please follow this link in order to create an account:
+
+{{applicationUrl}}/registration?token={{token}}
+
+Best regards,
+The Ngpt Team

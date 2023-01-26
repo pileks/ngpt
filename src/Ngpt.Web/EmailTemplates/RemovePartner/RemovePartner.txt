@@ -1,0 +1,7 @@
+﻿Hi there!
+
+{{projectCoordinator}} removed you from their project {{projectTitle}}.
+
+Best regards,
+The Ngpt Team
+		

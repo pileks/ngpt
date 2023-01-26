@@ -1,0 +1,5 @@
+
+<div>
+  <input class="form-control" type="text" currencyMask [options]="{ precision: precision ? this.precision : 2, prefix: '', thousands: groupSeparator, decimal: decimalSeparator }" placeholder="{{placeholder}}" [disabled]="disabled" [value]="value" *ngIf="value" (change)="onChange.emit()">
+  <input class="form-control" type="text" currencyMask [options]="{ precision: precision ? this.precision : 2, prefix: '', thousands: groupSeparator, decimal: decimalSeparator }" placeholder="{{placeholder}}" [(ngModel)]="model" [disabled]="disabled" *ngIf="!value" (change)="onChange.emit()">
+</div>

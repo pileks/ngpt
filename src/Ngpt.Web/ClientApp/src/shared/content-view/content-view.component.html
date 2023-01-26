@@ -1,0 +1,9 @@
+<augur-content-view [loading]="loading" [hideHeaderWhileLoading]="hideHeaderWhileLoading">
+    <ng-template #header>
+        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    </ng-template>
+
+    <ng-template #body>
+        <ng-container *ngTemplateOutlet="bodyTemplate"></ng-container>
+    </ng-template>
+</augur-content-view>

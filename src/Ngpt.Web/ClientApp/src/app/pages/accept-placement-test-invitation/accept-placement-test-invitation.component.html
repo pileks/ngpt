@@ -1,0 +1,61 @@
+<app-content-view>
+    <ng-template #header>
+        <div class="container mx-auto">
+            <div class="max-w-screen-md mx-auto">
+                <img class="h-32 w-auto -ml-3 -mb-4"
+                     src="assets/img/logo.svg"
+                     alt="NGPT logo">
+                <h2 class="text-xl font-semibold">
+                    Placement test
+                </h2>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template #body>
+        <div class="container mx-auto">
+            <div class="max-w-screen-md mx-auto">
+                <ng-container *ngIf="invitation">
+                    <form #form="ngForm"
+                          (ngSubmit)="start()"
+                          class="grid grid-cols-1 gap-4">
+
+                        <div class="max-w-prose">
+                            Before starting your placement test, please give us an honest assessment of your current language skill level.
+                        </div>
+
+                        <div>
+                            <app-entity-select [(ngModel)]="levelId"
+                                               [entityApiController]="levelsController"
+                                               label="My current level is:"
+                                               name="level">
+                                <ng-template #option
+                                             let-item>
+                                    {{ item.title }}
+                                </ng-template>
+                            </app-entity-select>
+                        </div>
+
+                        <app-toggle [(ngModel)]="shouldTestReading"
+                                    name="shouldTestReading"
+                                    label="Test my reading skills">
+                        </app-toggle>
+
+                        <app-toggle [(ngModel)]="shouldTestListening"
+                                    name="shouldTestListening"
+                                    label="Test my listening skills">
+                        </app-toggle>
+
+                        <div>
+                            <button type="submit"
+                                    class="btn btn-md btn-blue"
+                                    [disabled]="!form.valid || isLoading">
+                                Begin placement test
+                            </button>
+                        </div>
+                    </form>
+                </ng-container>
+            </div>
+        </div>
+    </ng-template>
+</app-content-view>

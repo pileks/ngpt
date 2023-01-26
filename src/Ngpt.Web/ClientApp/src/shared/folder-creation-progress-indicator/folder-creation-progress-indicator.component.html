@@ -1,0 +1,9 @@
+<div id="progressWrapper" class="row">
+    <div class="col text-center">
+        <augur-loading-indicator [loading]="folderCreationProgress.isLoading">
+        </augur-loading-indicator>
+        <div id="message" *ngIf="folderCreationProgress.message" [ngClass]="{ 'text-danger': !folderCreationProgress.finishedLoading, 
+            'text-success': folderCreationProgress.finishedLoading }" [innerText]="folderCreationProgress.message">
+        </div>
+    </div>
+</div>

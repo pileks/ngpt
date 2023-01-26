@@ -1,0 +1,31 @@
+<app-page-with-navigation-menu>
+    <ng-template #content>
+        <app-content-view>
+            <ng-template #header>
+                <app-simple-heading>
+                    <ng-container header>
+                        {{ 'listeningAudio.list.title' | translate }}
+                    </ng-container>
+                    <ng-container actions>
+                        <button type="button"
+                                (click)="create()"
+                                class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{ 'generic.create' | translate }}
+                        </button>
+                    </ng-container>
+                </app-simple-heading>
+            </ng-template>
+            <ng-template #body>
+                <div class="grid grid-cols-1 gap-4">
+                    <app-grid [dataSource]="gridDataSource"
+                              (onRowClicked)="open($event)"
+                              (onRowMiddleClicked)="openInNewTab($event)"
+                              (onRowCtrlClicked)="openInNewTab($event)"
+                              [entityResolver]="entityResolver">
+
+                    </app-grid>
+                </div>
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

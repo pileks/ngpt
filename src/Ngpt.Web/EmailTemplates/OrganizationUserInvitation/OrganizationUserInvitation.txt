@@ -1,0 +1,21 @@
+﻿
+Dear {{name}}
+
+Welcome to Next Generation Placement Tests!
+
+You were invited to participate under {{orgName}}.
+
+You can log in by following this link:
+
+<a href="{{applicationUrl}}"></a>
+
+Your login details are:
+
+User name: {{email}}
+
+Password: {{password}}
+
+For security, please remember to change your password after your first login.
+
+Kind regards,
+NGPT

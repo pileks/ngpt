@@ -1,0 +1,13 @@
+<input type="{{ type ? type : 'text' }}" 
+       class="form-control" 
+       placeholder="{{placeholder}}" 
+       [disabled]="disabled" 
+       [value]="value" 
+       *ngIf="value"
+       >
+<input type="{{ type ? type : 'text' }}" 
+       class="form-control" 
+       placeholder="{{placeholder}}" 
+       [(ngModel)]="model" 
+       [disabled]="disabled" 
+       *ngIf="!value">

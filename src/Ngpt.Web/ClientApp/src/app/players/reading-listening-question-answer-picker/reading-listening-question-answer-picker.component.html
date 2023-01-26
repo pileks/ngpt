@@ -1,0 +1,27 @@
+<div class="grid grid-cols-1 gap-4 place-content-center
+            lg:grid-cols-2
+            hover:border-gray-400">
+    <ng-container *ngFor="let answer of question.answers">
+        <label class="relative flex justify-items-center items-center rounded-lg border border-gray-300 bg-gray-100 shadow-sm p-6
+                      hover:bg-gray-200 hover:border-gray-400"
+               [ngClass]="{ 'bg-blue-100 hover:bg-blue-200 hover:border-blue-600': isAnswerSelected(answer), 'col-span-2': question.answerType == 1 }">
+            <input type="radio"
+                   (change)="onAnswerChange(answer)"
+                   name="answer"
+                   #test
+                   class="sr-only" />
+            <span *ngIf="question.answerType == 1"
+                  class="pointer-events-none select-none">
+                {{ answer.text }}
+            </span>
+            <img *ngIf="question.answerType == 2"
+                 src="/api/uploadedresources/preview?resourceId={{answer.imageId}}"
+                 class="block mx-auto w-full max-w-xl max-h-xl pointer-events-none select-none" />
+
+            <div class="border-transparent absolute -inset-px rounded-lg border-2 pointer-events-none bg-transparent"
+                 aria-hidden="true"
+                 [ngClass]="{ 'border-blue-500': isAnswerSelected(answer) }">
+            </div>
+        </label>
+    </ng-container>
+</div>

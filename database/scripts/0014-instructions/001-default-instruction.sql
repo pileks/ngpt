@@ -1,0 +1,1 @@
+insert into dbo.Instructions([Text], QuestionType, LanguageId) values (N'Empty instructions', 1, (select top 1 Id from dbo.Languages))

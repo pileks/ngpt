@@ -1,0 +1,13 @@
+<div class="block mx-auto max-w-screen-md p-4 rounded">
+    <div class="grid gap-6">
+        <h3 class="font-semibold">
+            {{ instruction }}
+        </h3>
+        <h4 class="text-xl font-semibold">
+            {{ question.questionText }}
+        </h4>
+        <app-reading-listening-question-answer-picker [question]="question"
+                                                      (answerChange)="onAnswerChange($event)">
+        </app-reading-listening-question-answer-picker>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>NGPT - Take your placement test</title>
+
+    <style type="text/css">
+        .text-center {
+            text-align: center;
+        }
+
+        h2, h3, p, b {
+            font-family: Roboto, Arial, sans-serif;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.75rem;
+        }
+
+        .gfs-logo {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img class="gfs-logo" alt="Ngpt logo" src="{{logoUrl}}" />
+
+        <h2>Dear student,</h2>
+
+        <p>
+            Your placement test is ready!<br />
+
+            You can access your placement test by clicking on the following link: <br />
+
+            <a href="{{applicationUrl}}/accept-placement-test-invitation/{{token}}">
+                Begin placement test
+            </a><br />
+        </p>
+        <p>
+            Kind regards,
+        </p>
+        <p>
+            <b>NGPT</b>
+        </p>
+    </div>
+</body>
+</html>

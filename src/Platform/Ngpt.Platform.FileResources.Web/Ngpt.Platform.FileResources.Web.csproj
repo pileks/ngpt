@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\augurnet\Augur.Security\Augur.Security.csproj" />
+    <ProjectReference Include="..\Ngpt.Platform.Data\Ngpt.Platform.Data.csproj" />
+    <ProjectReference Include="..\Ngpt.Platform.Identity.Web\Ngpt.Platform.Identity.Web.csproj" />
+  </ItemGroup>
+
+</Project>

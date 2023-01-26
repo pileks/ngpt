@@ -1,0 +1,10 @@
+﻿Dear student,
+
+Your placement test is ready!
+
+You can access your placement test by clicking on the following link:
+
+{{applicationUrl}}/accept-placement-test-invitation/{{token}}
+
+Kind regards,
+NGPT

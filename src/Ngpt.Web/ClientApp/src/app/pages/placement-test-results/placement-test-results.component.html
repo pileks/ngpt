@@ -1,0 +1,62 @@
+<div class="mx-auto container">
+    <div class="max-w-screen-md mx-auto p-4 grid gap-4">
+        <img class="h-32 w-auto -ml-3 -mb-4"
+             src="assets/img/logo.svg"
+             alt="NGPT logo">
+
+        <h2 class="text-2xl font-semibold">Your test results</h2>
+
+        <ng-container *ngIf="results">
+            <div>
+                Level: <strong class="text-lg">{{ results.level.title }}</strong>
+            </div>
+            <div>
+                Rating: <strong>{{ results.placementTest.rating | number:'1.0-2' }}</strong> <br />
+            </div>
+            <div>
+                Rd: <strong>{{ results.placementTest.rd | number:'1.0-2' }}</strong>
+            </div>
+            <div>
+                Reading: <strong class="text-lg">
+                    <span *ngIf="results.placementTest.readingQuestionTextId">
+                        {{ results.placementTest.readingTextCorrectAnswers }} / {{ results.placementTest.readingTextTotalAnswers }}
+                    </span>
+                    <span *ngIf="!results.placementTest.readingQuestionTextId">
+                        Not available
+                    </span>
+                </strong><strong></strong>
+            </div>
+            <div>
+                Listening: <strong class="text-lg">
+                    <span *ngIf="results.placementTest.listeningQuestionAudioId">
+                        {{ results.placementTest.listeningAudioCorrectAnswers }} / {{ results.placementTest.listeningAudioTotalAnswers }}
+                    </span>
+                    <span *ngIf="!results.placementTest.readingQuestionTextId">
+                        Not available
+                    </span>
+                </strong><strong></strong>
+            </div>
+            <div>
+                <p>
+                    Thank you for completing the test! <br />
+                    As we are currently in the piloting phase, we would really appreciate your feedback. <br />
+
+                    Please take a minute to evaluate your test-taking experience by clicking on the following button: <br />
+                    <a class="btn btn-lg btn-blue mt-2"
+                       href="https://aweform.com/view/923435964552970241/new-ngpt-pilot-form/?quiz_id={{results.placementTest.id}}"
+                       rel="noopener noreferrer"
+                       target="_blank">
+                        Evaluate the placement test
+                    </a>
+                </p>
+            </div>
+
+        </ng-container>
+
+        <ng-container *ngIf="!results">
+            Loading...
+        </ng-container>
+    </div>
+
+</div>
+

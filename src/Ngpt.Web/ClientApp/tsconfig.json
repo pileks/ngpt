@@ -1,0 +1,42 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es5",
+    "module": "es2020",
+    "lib": [
+      "es2019",
+      "dom"
+    ],
+	"paths": {
+		"@augur": [
+			"src/vendor/ngx-augur/src"
+		],
+		"@platform": [
+			"src/platform"
+		],
+		"@platform/*": [
+			"src/platform/*"
+		],
+		"@shared": [
+			"src/shared"
+		],
+		"@shared/*": [
+			"src/shared/*"
+		],
+		"@src/*": [
+			"src/*.android.ts", "src/*.ios.ts", "src/*.tns.ts", "src/*.web.ts", "src/*.ts",
+			"src/*.web",
+			"src/*"
+		]
+	}
+  }
+}

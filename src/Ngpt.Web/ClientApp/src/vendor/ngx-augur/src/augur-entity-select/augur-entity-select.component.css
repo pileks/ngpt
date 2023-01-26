@@ -1,0 +1,11 @@
+.dropdown-menu {
+    @apply flex z-10 flex-col mt-1 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm;
+}
+
+.dropdown-item {
+    @apply text-gray-900 select-none relative py-2 pl-3 pr-9 text-left;
+}
+
+.active {
+    @apply bg-gray-100;
+}

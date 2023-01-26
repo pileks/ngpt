@@ -1,0 +1,41 @@
+alter table dbo.DragDropQuestionParts
+drop constraint FK_DragDropQuestionParts_User, FK_DragDropQuestionParts_Tenant
+alter table dbo.DragDropQuestionParts
+drop column UserId, TenantId 
+
+alter table dbo.ListeningQuestionAnswers
+drop constraint FK_ListeningQuestionAnswers_User, FK_ListeningQuestionAnswers_Tenant
+alter table dbo.ListeningQuestionAnswers
+drop column UserId, TenantId 
+
+alter table dbo.MultipleChoiceQuestionAnswerParts
+drop constraint FK_MultipleChoiceQuestionAnswerParts_User, FK_MultipleChoiceQuestionAnswerParts_Tenant
+alter table dbo.MultipleChoiceQuestionAnswerParts
+drop column UserId, TenantId 
+
+alter table dbo.MultipleChoiceQuestionParts
+drop constraint FK_MultipleChoiceQuestionParts_User, FK_MultipleChoiceQuestionParts_Tenant
+alter table dbo.MultipleChoiceQuestionParts
+drop column UserId, TenantId 
+
+
+alter table dbo.MultipleChoiceQuestionTextParts
+drop constraint FK_MultipleChoiceQuestionTextParts_User, FK_MultipleChoiceQuestionTextParts_Tenant
+alter table dbo.MultipleChoiceQuestionTextParts
+drop column UserId, TenantId 
+
+
+alter table dbo.MutlipleChoiceQuestionAnswerPartOptions
+drop constraint FK_MutlipleChoiceQuestionAnswerPartOptions_User, FK_MutlipleChoiceQuestionAnswerPartOptions_Tenant
+alter table dbo.MutlipleChoiceQuestionAnswerPartOptions
+drop column UserId, TenantId 
+
+alter table dbo.ReadingQuestionAnswers
+drop constraint FK_ReadingQuestionAnswers_User, FK_ReadingQuestionAnswers_Tenant
+alter table dbo.ReadingQuestionAnswers
+drop column UserId, TenantId 
+
+alter table dbo.SingleGapQuestionAnswers
+drop constraint FK_SingleGapQuestionAnswers_User, FK_SingleGapQuestionAnswers_Tenant
+alter table dbo.SingleGapQuestionAnswers
+drop column UserId, TenantId 

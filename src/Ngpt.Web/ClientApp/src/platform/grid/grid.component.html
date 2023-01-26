@@ -1,0 +1,108 @@
+<div class="grid gap-4 grid-cols-12">
+    <div class="flex flex-col col-span-12">
+        <div class="relative align-middle inline-block w-full">
+            <ng-container *ngIf="dataSource.metadata">
+                <div class="shadow border-b border-gray-200 sm:rounded-lg overflow-hidden">
+                    <div class="bg-white">
+                        <div class="px-4 py-3 flex flex-col gap-4 max-w-2xl">
+                            <div class="flex flex-row gap-4">
+                                <div class="flex-grow">
+                                    <app-text-input [(ngModel)]="searchQuery"
+                                                    (ngModelChange)="onSearchQueryChange()"
+                                                    name="search"
+                                                    placeholder="Search...">
+                                    </app-text-input>
+                                </div>
+                                <button type="button"
+                                        *ngIf="dataSource.metadata.filters.length"
+                                        (click)="toggleFilters()"
+                                        class="btn btn-md"
+                                        [ngClass]="{ 'btn-white': !hasActiveFilters, 'btn-indigo': hasActiveFilters }">
+                                    <span>Advanced&nbsp;filters</span>
+                                    <span *ngIf="dataSource.filters.length">
+                                        &nbsp;({{ dataSource.filters.length }})
+                                    </span>
+                                </button>
+                            </div>
+                            <div *ngIf="dataSource.metadata.filters.length"
+                                 [ngClass]="{ 'hidden': !displayFilters }">
+                                <app-grid-filter-builder [(filters)]="dataSource.filters"
+                                                         (filtersChange)="onFiltersChange($event)"
+                                                         [filterMetadata]="dataSource.metadata.filters"
+                                                         [entityResolver]="entityResolver"
+                                                         [enumResolver]="enumResolver">
+                                </app-grid-filter-builder>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="min-w-full">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th *ngFor="let column of dataSource.metadata.columns"
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider whitespace-nowrap
+                                           cursor-pointer select-none"
+                                    (click)="toggleSort(column.property)">
+                                    <div class="flex flex-row justify-between items-center">
+                                        <span>
+                                            {{ column.title }}
+                                        </span>
+                                        <ng-container *ngIf="getColumnSortDirection(column.property) === 'asc'">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                                            </svg>
+                                        </ng-container>
+                                        <ng-container *ngIf="getColumnSortDirection(column.property) === 'desc'">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                                            </svg>
+                                        </ng-container>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr *ngFor="let datum of dataSource.data; let i = index"
+                                class="bg-white hover:cursor-pointer hover:bg-gray-100"
+                                (click)="onClick($event, datum)"
+                                (auxclick)="onAuxClick($event, datum)">
+
+                                <ng-container *ngFor="let column of dataSource.metadata.columns">
+                                    <td class="px-4 py-3 text-sm font-medium text-gray-900">
+                                        <ng-container *ngIf="!columns[column.property]">
+                                            <ng-container [ngSwitch]="column.type">
+                                                <ng-container *ngSwitchCase="'Date'">
+                                                    {{ datum[column.property] | date:'dd.MM.yyyy.' }}
+                                                </ng-container>
+                                                <ng-container *ngSwitchCase="'boolean'">
+                                                    {{ datum[column.property] ? 'Yes' : 'No' }}
+                                                </ng-container>
+                                                <ng-container *ngSwitchDefault>
+                                                    {{ datum[column.property] }}
+                                                </ng-container>
+                                            </ng-container>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="columns[column.property]">
+                                            <ng-container *ngTemplateOutlet="columns[column.property], context: { $implicit: datum[column.property] }"></ng-container>
+                                        </ng-container>
+                                    </td>
+                                </ng-container>
+
+                            </tr>
+                            <tr *ngIf="dataSource.data.length == 0 && !dataSource.isLoading">
+                                <td colspan="9999"
+                                    class="text-center">
+                                    No data available.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <app-grid-pagination [dataSource]="dataSource"></app-grid-pagination>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="dataSource.isLoading">
+                <div class="absolute inset-0 bg-white opacity-75 rounded-lg"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>

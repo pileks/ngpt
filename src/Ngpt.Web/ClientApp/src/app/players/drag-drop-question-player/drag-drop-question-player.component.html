@@ -1,0 +1,27 @@
+<div class="block mx-auto max-w-screen-md p-4 rounded">
+    <div class="font-semibold pb-4">
+        {{ instruction }}
+    </div>
+    <div #dropListContainer cdkDropListGroup>
+        <div [sortablejs]="answerQuestionParts"
+             [sortablejsOptions]="answerSortableOptions"
+             class="p-4 border-blue-600 border-2 rounded select-none
+                    flex flex-wrap justify-center items-center">
+            <ng-container *ngFor="let questionPart of answerQuestionParts">
+                <div class="p-2 inline-block rounded"
+                     [ngClass]="{'cursor-move bg-indigo-200': questionPart.isDraggable, 'prevent-drag': !questionPart.isDraggable}">
+                    {{ questionPart.text }}
+                </div>
+            </ng-container>
+        </div>
+        <div [sortablejs]="movableQuestionParts"
+             [sortablejsOptions]="movableSortableOptions"
+             class="origin-list p-4 flex flex-wrap justify-center items-center gap-2">
+            <ng-container *ngFor="let questionPart of movableQuestionParts">
+                <span class="p-2 inline-block bordercursor-move bg-indigo-200 rounded select-none cursor-move">
+                    {{ questionPart.text }}
+                </span>
+            </ng-container>
+        </div>
+    </div>
+</div>

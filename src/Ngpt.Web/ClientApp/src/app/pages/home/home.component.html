@@ -1,0 +1,84 @@
+<app-page-with-navigation-menu>
+    <ng-template #content>
+        <app-content-view [loading]="isLoading"
+                          hideHeaderWhileLoading="true">
+            <ng-template #header>
+
+                <div class="hello-section">
+                    <h4 class="text-center mb-3">
+                        <span translate="home.welcome"></span>&nbsp;<b>{{ user.name }}</b>
+                        <span *augurIfSuperAdmin>
+                            (Super admin)
+                        </span>!
+                    </h4>
+                </div>
+            </ng-template>
+
+            <ng-template #body>
+                <div class="container px-0 mt-3 space-y-4">
+                    <h2>
+                        Change language:
+                    </h2>
+                    <div class="flex gap-4">
+                        <button class="btn btn-md btn-blue"
+                                (click)="useEnglishLang()">
+                            English
+                        </button>
+                        <button class="btn btn-md btn-blue"
+                                (click)="useSpanishLang()">
+                            Spanish
+                        </button>
+                        <button class="btn btn-md btn-blue"
+                                (click)="useCroatianLang()">
+                            Croatian
+                        </button>
+                        <button class="btn btn-md btn-blue"
+                                (click)="useItalianLang()">
+                            Italian
+                        </button>
+                        <button class="btn btn-md btn-blue"
+                                (click)="useSerbianLatinLang()">
+                            Serbian
+                        </button>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="isDebugModeEnabled">
+                    <div class="container px-0 mt-3 flex gap-4">
+                        <app-number-input [(ngModel)]="playerRating"
+                                          label="Player rating">
+                        </app-number-input>
+                        <app-number-input [(ngModel)]="playerRd"
+                                          label="Player RD">
+                        </app-number-input>
+                        <app-number-input [(ngModel)]="playerVol"
+                                          label="Player vol">
+                        </app-number-input>
+                    </div>
+                </ng-container>
+
+                <div class="container px-0 mt-3 flex gap-4">
+                    <ng-container *ngFor="let language of languages">
+                        <button class="btn btn-md btn-blue"
+                                (click)="startPlacementTest(language.id)">
+                            Placement test ({{language.name}})
+                        </button>
+                    </ng-container>
+                </div>
+
+                <ng-container *ngIf="!isDebugModeEnabled">
+                    <div class="container px-0 mt-3 flex gap-4">
+                        <ng-container *ngFor="let language of languages">
+                            <a class="btn btn-md btn-blue"
+                               [routerLink]="['/start-placement-test']"
+                               [queryParams]="{ languageId: language.id }">
+                                Placement test public ({{language.name}})
+                            </a>
+                        </ng-container>
+                    </div>
+                </ng-container>
+
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

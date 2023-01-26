@@ -1,0 +1,2 @@
+<input type="number" class="form-control" step="1" min="0" max="10" placeholder="{{placeholder}}" [disabled]="disabled" [value]="value" *ngIf="value">
+<input type="number" class="form-control" step="1" min="0" max="10" placeholder="{{placeholder}}" [(ngModel)]="model" [disabled]="disabled" *ngIf="!value">

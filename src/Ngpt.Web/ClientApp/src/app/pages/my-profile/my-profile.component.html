@@ -1,0 +1,202 @@
+<app-page-with-navigation-menu>
+    <ng-template #content>
+        <app-content-view [loading]="isProfileLoading">
+            <ng-template #header>
+                <div class="max-w-7xl mx-auto">
+                    <h4 class="text-xl font-semibold pb-4">
+                        My profile
+                    </h4>
+                </div>
+            </ng-template>
+
+            <ng-template #body>
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid gap-6">
+                        <div class="bg-white shadow p-6 sm:rounded-lg">
+                            <div class="pb-4">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">
+                                    Basic information
+                                </h3>
+                            </div>
+
+                            <div class="grid gap-4">
+                                <div>
+                                    <form id="profileInfoForm"
+                                          #form="ngForm"
+                                          (ngSubmit)="updateName()">
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <div class="col-span-2 ">
+                                                <app-text-input [(ngModel)]="profile.accountInfo.name"
+                                                                label="Name"
+                                                                name="name"
+                                                                required>
+                                                </app-text-input>
+
+                                                <ng-container *ngIf="(form.controls?.name?.dirty || form.controls?.name?.touched) && form.controls?.name?.invalid">
+                                                    <span *ngIf="form.controls?.name?.errors?.required"
+                                                          class="text-sm text-red-600">
+                                                        Name is required.
+                                                    </span>
+                                                </ng-container>
+                                            </div>
+
+                                            <div class="col-span-3 flex justify-start">
+                                                <button type="submit"
+                                                        class="btn btn-md btn-indigo"
+                                                        [disabled]="form.pristine || form.invalid">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white shadow p-6 sm:rounded-lg">
+                            <div class="pb-4">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">
+                                    Account
+                                </h3>
+                            </div>
+
+                            <div class="grid gap-4">
+                                <div class="grid grid-cols-3 gap-6">
+                                    <div class="col-span-3 md:col-span-2">
+                                        <app-text-input [(ngModel)]="profile.accountInfo.email"
+                                                        disabled
+                                                        name="email"
+                                                        label="Email">
+                                        </app-text-input>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Password
+                                    </label>
+                                    <div class="mt-1">
+                                        <a class="btn btn-md btn-white"
+                                           name="changePassword"
+                                           [routerLink]="['/change-password']">
+                                            Change password
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white shadow p-6 sm:rounded-lg">
+                            <div class="pb-4">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">
+                                    Privacy and data processing
+                                </h3>
+                            </div>
+
+                            <div class="grid gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Privacy policy
+                                    </label>
+                                    <div class="mt-1">
+                                        <a class="btn btn-md btn-white"
+                                           [routerLink]="['/privacy-policy/en']">
+                                            Privacy policy (EN) - click to view
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="container px-0">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="sub-header">
+                                Account
+                            </h5>
+
+                            <div class="account-info-item">
+                                <span class="mr-2"><b>Email:</b> {{profile.accountInfo.email}}</span>
+                            </div>
+
+                            <div class="account-info-item">
+                                <div>
+                                    <ng-container *ngIf="!accountInfoEditor.name.isEditingEnabled">
+                                        <span class="mr-2">
+                                            <b>Name:</b>
+                                            {{ profile.accountInfo.name }}
+                                        </span>
+
+                                        <button type="button"
+                                                class="cursor-pointer btn btn-outline-success"
+                                                (click)="accountInfoEditor.name.isEditingEnabled = true">
+                                            Change
+                                        </button>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="accountInfoEditor.name.isEditingEnabled">
+                                        <form (ngSubmit)="updateName()"
+                                              class="">
+                                            <div class="row">
+                                                <div class="col d-flex">
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           placeholder="Institution Name"
+                                                           [(ngModel)]="profile.accountInfo.name"
+                                                           [disabled]="accountInfoEditor.name.isLoading"
+                                                           name="name">
+
+                                                    <button class="btn btn-success ml-2"
+                                                            *ngIf="!accountInfoEditor.name.isLoading"
+                                                            [disabled]="accountInfoEditor.name.isLoading || !accountInfoEditor.name.isValid(profile.accountInfo.name)"
+                                                            type="submit">
+                                                        <fa-icon icon="check"></fa-icon>
+                                                    </button>
+
+                                                    <button class="btn btn-success ml-2 d-flex align-items-center"
+                                                            *ngIf="accountInfoEditor.name.isLoading">
+                                                        <augur-loading-indicator [loading]="true"
+                                                                                 class="d-inline-block small-loader">
+                                                        </augur-loading-indicator>
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                            <div class="account-info-item">
+                                <span class="mr-2"><b>Password:</b> ******</span>
+
+                                <a class="cursor-pointer btn btn-outline-success"
+                                   name="changePassword"
+                                   [routerLink]="['/change-password']">
+                                    Change
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <h5 class="sub-header">
+                                Privacy and data processing
+                            </h5>
+
+                            <div>
+                                <div>
+                                    <a [routerLink]="['/privacy-policy/en']">Privacy policy (EN) - click to view</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

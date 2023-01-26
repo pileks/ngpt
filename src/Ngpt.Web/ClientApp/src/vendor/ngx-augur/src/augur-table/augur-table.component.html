@@ -1,0 +1,69 @@
+<div>
+  <table class="table augur-table augur-table-elevation">
+    <thead *ngIf="!shouldHideHead">
+    <tr class="augur-table-header-row {{rowClasses}}" style="margin-right: 0px;  margin-left: 0px;">
+      <th *ngFor="let propertyName of properties" class="{{config[propertyName].columnClasses}} align-center {{ config[propertyName].type !== 'currency-text' ? '' : 'flex-align-right ' }}"><span class="{{ config[propertyName].type === 'currency-text' ? 'mod-padding-right-huge' : '' }}"> {{columns[propertyName]}} </span></th>
+      <th class="{{actionsColumnClasses}}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="augur-table-row {{rowClasses}}" *ngFor="let item of data" style="margin-right: 0px;  margin-left: 0px;">
+
+      <ng-container *ngIf="hasCustomItemContent">
+        <ng-content select="item"></ng-content>
+      </ng-container>
+
+      <ng-container *ngIf="!hasCustomItemContent">
+        <td *ngFor="let propertyName of properties" class="{{config[propertyName].columnClasses}} augur-table-td  {{ config[propertyName].type === 'currency-text' || config[propertyName].type === 'text' || config[propertyName].alignCenter ? 'align-center' : ' ' }} {{ config[propertyName].type !== 'currency-text' ? '' : 'flex-align-right ' }}">
+          <div *ngIf="!config || config[propertyName].type === 'input'">
+              <input class="form-control" placeholder="{{columns[propertyName]}}..." value="{{config[propertyName].map ? config[propertyName].map(item) : ''}}" *ngIf="config[propertyName].map" [disabled]="config[propertyName].disabled">
+              <input class="form-control" placeholder="{{columns[propertyName]}}..." [(ngModel)]="item[propertyName]" *ngIf="!config[propertyName].map" [disabled]="config[propertyName].disabled">
+          </div>
+  
+          <div *ngIf="config && (config[propertyName].type === 'text' || config[propertyName].type === 'currency-text' )">
+            <span class="{{ config[propertyName].type === 'currency-text' ? 'mod-padding-right-huge' : '' }}">
+              {{config[propertyName].map ? config[propertyName].map(item) : item[propertyName]}}
+            </span>
+          </div>
+
+          <div class="form-group" *ngIf="config && (config[propertyName].type === 'bool-input')">
+            <label>
+                <input type="checkbox" class="mr-3" [(ngModel)]="item[propertyName]" [disabled]="config[propertyName].disabled">
+                {{columns[propertyName]}}
+            </label>
+          </div>
+
+          <augur-currency-input placeholder="{{columns[propertyName]}}..." [decimalSeparator]="config[propertyName].currencyOptions.decimalSeparator" [groupSeparator]="config[propertyName].currencyOptions.groupSeparator" [(model)]="item[propertyName]" *ngIf="!config || config[propertyName].type === 'currency-input'" [disabled]="config[propertyName].disabled"></augur-currency-input>
+  
+          <augur-entity-select [(model)]="item[propertyName]"
+            [identifier]="config[propertyName].selectOptions.identifier"
+            [entityApiController]="config[propertyName].selectOptions.entityApiController"
+            [listItems]="config[propertyName].selectOptions.listItems"
+            (onSelect)="config[propertyName].selectOptions.onSelect && config[propertyName].selectOptions.onSelect(item, $event)"
+            (onUnselect)="config[propertyName].selectOptions.onUnselect && config[propertyName].selectOptions.onUnselect(item, $event)"
+            [disabled]="config[propertyName].disabled"
+            *ngIf="config && config[propertyName].type === 'select'">
+                <ng-template #option let-item>
+                    {{config[propertyName].selectOptions.mapOptionItem(item)}}
+                </ng-template>
+           </augur-entity-select>
+  
+          <button class="{{config[propertyName].classes}}" type="button" (click)="config[propertyName].onClick(item)" *ngIf="config[propertyName].type === 'button'">{{config[propertyName].text}}</button>
+  
+          <ng-container *ngIf="config[propertyName].type === 'template'" >
+            <ng-container *ngTemplateOutlet="columnTemplates.toArray()[config[propertyName].templateIndex], context: { $implicit: item }"></ng-container>
+          </ng-container>
+        </td>
+        <td class="{{actionsColumnClasses}}">
+            <button class="btn btn-danger" (click)="removeEntity(item)" [disabled]="shouldDisableDelete">
+              <fa-icon icon="times"></fa-icon>
+            </button>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+
+  <button class="col-sm-4 btn btn-success" type="button" (click)="add()">Add</button>
+
+</div>

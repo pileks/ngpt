@@ -1,0 +1,9 @@
+:host(.ng-invalid.ng-touched) .invalid-label,
+:host(.ng-invalid.ng-dirty) .invalid-label {
+    @apply text-red-600;
+}
+
+:host(.ng-invalid.ng-touched) .invalid-control,
+:host(.ng-invalid.ng-dirty) .invalid-control {
+    @apply border-red-300 text-red-600 placeholder-red-300 focus:ring-red-500 focus:border-red-500;
+}

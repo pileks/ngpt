@@ -1,0 +1,113 @@
+<div class="grid grid-cols-12 gap-4">
+    <ng-container *ngFor="let part of sortedParts(); let i = index; let isLast = last">
+        <div class="col-span-12">
+            <ng-container *ngIf="part.textPart">
+                <div class="pb-4 border-b-2 border-dashed border-gray-300">
+                    <app-text-input [(ngModel)]="part.textPart.text"
+                                    label="{{ 'multipleChoiceQuestionEditor.input.text' | translate }}"
+                                    (ngModelChange)="updateChanges()"
+                                    [disabled]="editorDisabled">
+                    </app-text-input>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="part.answerPart">
+                <div class="pb-4 border-b-2 border-dashed border-gray-300">
+                    <label class="block text-sm font-medium text-gray-700">
+                        {{ 'multipleChoiceQuestionEditor.options' | translate }}
+                    </label>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
+                        <ng-container *ngFor="let option of part.answerPart.options">
+                            <div>
+                                <app-text-input [(ngModel)]="option.text"
+                                                class="block mb-4"
+                                                (ngModelChange)="updateChanges()"
+                                                [disabled]="editorDisabled">
+                                </app-text-input>
+                                <app-toggle [(ngModel)]="option.isCorrect"
+                                            label="{{ 'multipleChoiceQuestionEditor.input.correct' | translate }}"
+                                            (ngModelChange)="updateChanges()"
+                                            [disabled]="editorDisabled">
+                                </app-toggle>
+                            </div>
+                        </ng-container>
+                        <div>
+                            <button type="button"
+                                    (click)="removeOption(part.answerPart)"
+                                    [disabled]="!canRemoveOptions(part.answerPart) || editorDisabled"
+                                    class="mr-2 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-indigo-600
+                                           hover:bg-indigo-700
+                                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                           disabled:opacity-50">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-5 w-5"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M20 12H4" />
+                                </svg>
+                            </button>
+                            <button type="button"
+                                    (click)="addOption(part.answerPart)"
+                                    [disabled]="!canAddOptions(part.answerPart) || editorDisabled"
+                                    class="inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-indigo-600
+                                           hover:bg-indigo-700
+                                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                           disabled:opacity-50">
+                                <svg class="h-5 w-5"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20"
+                                     fill="currentColor"
+                                     aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                          clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <div class="col-span-12">
+        <button type="button"
+                *ngIf="!isLastPartText"
+                (click)="addTextPart()"
+                [disabled]="editorDisabled"
+                class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                               border border-transparent text-sm font-medium rounded-full
+                               shadow-sm text-white bg-indigo-600
+                               hover:bg-indigo-700
+                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50">
+            {{ 'multipleChoiceQuestionEditor.addText' | translate }}
+        </button>
+        <button type="button"
+                *ngIf="!isLastPartAnswer"
+                (click)="addAnswerPart()"
+                [disabled]="editorDisabled"
+                class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                               border border-transparent text-sm font-medium rounded-full
+                               shadow-sm text-white bg-indigo-600
+                               hover:bg-indigo-700
+                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50">
+            {{ 'multipleChoiceQuestionEditor.addOptions' | translate }}
+        </button>
+
+        <button type="button"
+                (click)="removePart()"
+                [disabled]="!canRemovePart || editorDisabled"
+                class="w-40 inline-flex items-center justify-center px-4 py-2
+                               border border-indigo-600 text-sm font-semibold rounded-full
+                               shadow-sm text-indigo-600 bg-white
+                               hover:bg-grey-100
+                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                               disabled:opacity-50">
+            {{ 'multipleChoiceQuestionEditor.removeLastPart' | translate: isLastPartText ? { lastPart: 'text' } : { lastPart: 'options' } }}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div>
+    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" [disabled]="disabled">
+
+    <div class="cursor-pointer">
+        <div *ngIf="resourceId" class="input-group">
+        <button class="btn btn-success {{btnClasses}}" (click)="file.click()" [disabled]="disabled">
+            <span *ngIf="!isLoading">{{fileName}}</span>
+            <span *ngIf="isLoading">Loading...</span>
+            <fa-icon class="float-right" icon="times" (click)="removeSelection($event)" *ngIf="!isLoading && !disabled"></fa-icon>
+            <i class="loader float-right" *ngIf="isLoading"></i>
+        </button>
+        <a (click)="download()" class="btn btn-info input-group-append" style="border-radius: 0;
+            border-left: 2px solid rgba(255, 255, 255, 1);" *ngIf="!isLoading">
+            <fa-icon class="float-right" icon="arrow-alt-circle-down"></fa-icon>
+        </a>
+            <div (click)="previewFile()" class="btn btn-success" *ngIf="!isLoading" style="border-radius: 0;
+        border-left: 1px solid rgba(255, 255, 255, 1);">
+            <fa-icon class="float-right" icon="eye"></fa-icon>
+        </div>
+    </div>
+
+    <div *ngIf="!resourceId">
+        <button class="btn btn-success {{btnClasses}}" [disabled]="disabled" (click)="file.click()">
+            <div *ngIf="!isUploading && !resourceId">Upload file</div>
+            <div *ngIf="isUploading">Upload in progress...</div>
+        </button>
+    </div>
+    </div>
+</div>

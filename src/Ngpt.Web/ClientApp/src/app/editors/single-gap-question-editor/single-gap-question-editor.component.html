@@ -1,0 +1,71 @@
+<div class="grid grid-cols-1 gap-4">
+    <app-text-input [(ngModel)]="question.textBefore"
+                    name="{{name}}textBefore"
+                    (ngModelChange)="onModelChange()"
+                    label="{{ 'singleGapQuestionEditor.input.textBefore' | translate }}"
+                    [disabled]="editorDisabled">
+    </app-text-input>
+
+    <ng-container *ngFor="let answer of question.answers; let i = index">
+        <div class="flex align-center gap-2">
+            <app-text-input [(ngModel)]="answer.text"
+                            name="{{name}}answer-{{i}}"
+                            (ngModelChange)="onModelChange()"
+                            label="{{ 'singleGapQuestionEditor.input.answer' | translate }} {{i + 1}}"
+                            class="flex-grow"
+                            [disabled]="editorDisabled">
+            </app-text-input>
+
+            <app-toggle [(ngModel)]="answer.isCaseSensitive"
+                        name="{{name}}caseSensitive-{{i}}"
+                        (ngModelChange)="onModelChange()"
+                        label="{{ 'singleGapQuestionEditor.input.caseSensitive' | translate }}"
+                        class="flex items-end pb-2"
+                        [disabled]="editorDisabled">
+            </app-toggle>
+            <div class="flex items-end">
+                <button type="button"
+                        (click)="removeAnswer(answer)"
+                        [disabled]="editorDisabled"
+                        class="p-2 inline-flex items-center justify-center
+                               border border-indigo-600 text-sm font-medium rounded-full
+                               shadow-sm text-indigo-600 bg-transparent
+                               hover:border-indigo-900 hover:text-indigo-900
+                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                               disabled:opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-5 w-5"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </ng-container>
+
+    <div>
+        <button type="button"
+                (click)="addAnswer()"
+                [disabled]="editorDisabled"
+                class="mr-2 w-40 inline-flex items-center justify-center px-4 py-2
+                       border border-transparent text-sm font-medium rounded-full
+                       shadow-sm text-white bg-indigo-600
+                       hover:bg-indigo-700
+                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                       disabled:opacity-50">
+            {{ 'singleGapQuestionEditor.addAnswer' | translate }}
+        </button>
+    </div>
+
+    <app-text-input [(ngModel)]="question.textAfter"
+                    name="{{name}}textAfter"
+                    (ngModelChange)="onModelChange()"
+                    label="{{ 'singleGapQuestionEditor.input.textAfter' | translate }}"
+                    [disabled]="editorDisabled">
+    </app-text-input>
+</div>

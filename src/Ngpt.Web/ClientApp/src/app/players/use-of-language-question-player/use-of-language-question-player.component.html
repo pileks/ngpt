@@ -1,0 +1,26 @@
+<ng-container *ngIf="question">
+    <ng-container *ngIf="question.type === useOfLanguageQuestionType.MultipleChoice">
+        <app-multiple-choice-question-player [question]="question.multipleChoiceQuestion"
+                                             [instruction]="question.instruction.text"
+                                             (answerChange)="onAnswerChange($event)">
+        </app-multiple-choice-question-player>
+    </ng-container>
+    <ng-container *ngIf="question.type === useOfLanguageQuestionType.SingleGap">
+        <app-single-gap-question-player [question]="question.singleGapQuestion"
+                                        [instruction]="question.instruction.text"
+                                        (answerChange)="onAnswerChange($event)">
+        </app-single-gap-question-player>
+    </ng-container>
+    <ng-container *ngIf="question.type === useOfLanguageQuestionType.DragDrop">
+        <app-drag-drop-question-player [question]="question.dragDropQuestion"
+                                       [instruction]="question.instruction.text"
+                                       (answerChange)="onAnswerChange($event)">
+        </app-drag-drop-question-player>
+    </ng-container>
+    <ng-container *ngIf="question.type === useOfLanguageQuestionType.SingleAnswer">
+        <app-single-answer-question-player [question]="question.singleAnswerQuestion"
+                                           [instruction]="question.instruction.text"
+                                           (answerChange)="onAnswerChange($event)">
+        </app-single-answer-question-player>
+    </ng-container>
+</ng-container>

@@ -1,0 +1,154 @@
+<div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th *ngFor="let propertyName of properties"
+                                [ngClass]="columns[propertyName].classes"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {{columns[propertyName].title}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="!dataSource.isLoading">
+                            <tr *ngFor="let entity of dataSource.entities; let i = index"
+                                [ngClass]="{ 'bg-gray-100': i%2!==0, 'bg-white': i%2===0 }"
+                                (click)="onRowClickedInternal(entity)"
+                                class="hover:cursor-pointer hover:bg-gray-300">
+
+                                <ng-container *ngFor="let propertyName of properties">
+                                    <ng-container *ngIf="columns[propertyName].type !== 'template'">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            {{columns[propertyName].map ? columns[propertyName].map(entity) : entity[propertyName]}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="columns[propertyName].type === 'template'">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            <ng-container *ngTemplateOutlet="columnTemplates.toArray()[columns[propertyName].templateIndex], context: { $implicit: entity }"></ng-container>
+                                        </td>
+                                    </ng-container>
+                                </ng-container>
+
+                            </tr>
+                            <tr *ngIf="dataSource.entities.length == 0">
+                                <td colspan="9999"
+                                    class="text-center">
+                                    No data available.
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="mt-4 border-t border-gray-200 px-4 flex items-center justify-between sm:px-0">
+    <div class="flex-1 flex">
+        <button type="button"
+                (click)="setPageNumber(pageNumber - 1)"
+                [disabled]="pageNumber <= 1"
+                class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+            <!-- Heroicon name: solid/arrow-narrow-left -->
+            <svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Previous
+        </button>
+    </div>
+    <div class="flex flex-wrap">
+        <ng-container *ngFor="let i of pages">
+            <button type="button"
+                    (click)="setPageNumber(i)"
+                    class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+                    [ngClass]="{ 'border-indigo-500 text-indigo-600': i === pageNumber }">
+                {{ i }}
+            </button>
+        </ng-container>
+    </div>
+    <div class="flex-1 flex justify-end">
+        <button type="button"
+                (click)="setPageNumber(pageNumber + 1)"
+                [disabled]="pageNumber >= pageCount"
+                class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+            Next
+            <!-- Heroicon name: solid/arrow-narrow-right -->
+            <svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </button>
+    </div>
+</nav>
+<!--
+<div>
+    <table class="table table-striped augur-grid augur-grid-elevation">
+        <thead>
+            <tr class="augur-grid-header-row row">
+                <div *ngFor="let propertyName of properties" class="augur-grid-th align-center {{columns[propertyName].classes}} {{ columns[propertyName].type !== 'currency-input' ? '' : 'flex-align-right ' }}"><span class="{{ columns[propertyName].type === 'currency-input' ? 'mod-padding-right-huge' : '' }}">{{columns[propertyName].title}}</span></div>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="augur-grid-row row" *ngIf="shouldEnableColumnFilter()">
+                <div *ngFor="let propertyName of properties" class="augur-grid-td {{columns[propertyName].classes}}">
+                    <div *ngIf="columns[propertyName].hasColumnFilter">
+                        <input class="form-control" placeholder="{{columns[propertyName].title}}..." [(ngModel)]="columnFilter[propertyName]" *ngIf="columns[propertyName].type == 'input'" (change)="onColumnFilterChanged(propertyName)">
+
+                        <augur-currency-input placeholder="{{columns[propertyName]}}..." [decimalSeparator]="columns[propertyName].currencyOptions.decimalSeparator" [groupSeparator]="columns[propertyName].currencyOptions.groupSeparator" [(model)]="columnFilter[propertyName]" *ngIf="columns[propertyName].type === 'currency-input'" (onChange)="onColumnFilterChanged(propertyName)"></augur-currency-input>
+
+                        <augur-date-picker [(model)]="columnFilter[propertyName]" *ngIf="columns[propertyName].type === 'date'" (onSelect)="onColumnFilterChanged(propertyName)" (onUnselect)="onColumnFilterChanged(propertyName)"></augur-date-picker>
+
+                        <augur-entity-select [(model)]="columnFilter[propertyName]"
+                                             (onSelect)="onColumnFilterChanged(propertyName)"
+                                             (onUnselect)="onColumnFilterChanged(propertyName)"
+                                             [identifier]="columns[propertyName].selectOptions.identifier"
+                                             [entityApiController]="columns[propertyName].selectOptions.entityApiController"
+                                             [listItems]="columns[propertyName].selectOptions.listItems"
+                                             *ngIf="columns[propertyName].type === 'select'">
+                            <ng-template #option let-item>
+                                {{columns[propertyName].selectOptions.mapOptionItem(item)}}
+                            </ng-template>
+                        </augur-entity-select>
+                    </div>
+
+                </div>
+            </tr>
+
+            <ng-container *ngIf="!dataSource.isLoading">
+                <tr class="augur-grid-row augur-selectable-row row" *ngFor="let entity of dataSource.entities" (click)="onRowClickedInternal(entity)">
+                    <div *ngFor="let propertyName of properties" class="augur-grid-td align-center {{columns[propertyName].classes}} {{ columns[propertyName].type !== 'currency-input' ? '' : 'flex-align-right ' }}">
+
+                        <ng-container *ngIf="columns[propertyName].type !== 'template'">
+                            <span class="{{ columns[propertyName].type === 'currency-input' ? 'mod-padding-right-huge' : '' }}">
+                                {{columns[propertyName].map ? columns[propertyName].map(entity) : entity[propertyName]}}
+                            </span>
+                        </ng-container>
+
+                        <ng-container *ngIf="columns[propertyName].type === 'template'">
+                            <ng-container *ngTemplateOutlet="columnTemplates.toArray()[columns[propertyName].templateIndex], context: { $implicit: entity }"></ng-container>
+                        </ng-container>
+                    </div>
+
+                </tr>
+
+                <tr *ngIf="dataSource.entities.length == 0"><td colspan="2"><div class="text-center">No data available.</div></td></tr>
+
+            </ng-container>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="dataSource.totalCount" [(page)]="pageNumber" [pageSize]="pageSize" maxSize="10">
+        </ngb-pagination>
+
+        <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChanged()">
+            <option [ngValue]="25">25 items per page</option>
+            <option [ngValue]="50">50 items per page</option>
+            <option [ngValue]="100">100 items per page</option>
+        </select>
+    </div>
+</div>
+    -->

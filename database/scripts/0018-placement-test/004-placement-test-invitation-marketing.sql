@@ -1,0 +1,3 @@
+alter table dbo.PlacementTestInvitations
+add HasGivenMarketingPermission bit not null
+constraint DF_HasGivenMarketingPermission default(0);

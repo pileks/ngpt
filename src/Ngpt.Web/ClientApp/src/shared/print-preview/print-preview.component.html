@@ -1,0 +1,29 @@
+<div>
+    <div class="w-100">
+        <div class="w-100">
+            <h3 class="my-1 mx-1">
+                File preview
+                <button class="btn btn-danger float-right"
+                        (click)="onCloseClicked()">
+                    Close
+                </button>
+            </h3>
+
+        </div>
+
+        <ng-container *ngIf="!isLoading">
+            <ng-container *ngIf="isImage()">
+                ¨
+                <div>
+                    <img [src]="getUrlForPreview()" class="w-100">
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!isImage()">
+                <div class="embed-responsive embed-responsive-4by3 text-center">
+                    <iframe [src]="getUrlForPreview()" class="print-modal-handler"></iframe>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

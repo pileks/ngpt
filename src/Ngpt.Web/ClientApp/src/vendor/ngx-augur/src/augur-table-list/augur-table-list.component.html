@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    </thead>
+
+    <tbody>
+
+        <ng-container *ngFor="let item of items">
+
+            <tr (click)="itemAction(item)" class="cursor-pointer">
+                <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-container>
+            </tr>
+
+        </ng-container>
+
+    </tbody>
+</table>
+
+<div *ngIf="!isLoading">
+    <ng-container *ngTemplateOutlet="footerTemplate; context: { loadMore: loadMore, isMoreDataAvailable: isMoreDataAvailable }"></ng-container>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="isLoading">
+    <augur-loading-indicator [loading]="true"></augur-loading-indicator>
+</div>

@@ -1,0 +1,270 @@
+{
+    "about": {
+        "title": "Información"
+    },
+    "answerPreview": {
+        "correct": "Respuesta correcta",
+        "incorrect": "Respuesta incorrecta"
+    },
+    "changePassword": {
+        "backToMyProfile": "Volver a mi perfil",
+        "changePassword": "Cambiar contraseña",
+        "input": {
+            "confirmNewPassword": "Confirmar nueva contraseña",
+            "error": {
+                "invalidPassword": "Contraseña invalida",
+                "passwordsDoNotMatch": "Las contraseñas no son iguales"
+            },
+            "newPassword": "Contraseña nueva",
+            "oldPassword": "Contraseña antigua"
+        },
+        "passwordChangedSuccessfully": "La contraseña ha sido cambiada",
+        "title": "Cambiar contraseña"
+    },
+    "dragDropQuestionEditor": {
+        "addPart": "Añadir una parte",
+        "input": {
+            "draggable": "Arrastrable"
+        },
+        "sentenceParts": "Las partes de la frase"
+    },
+    "emailConfirmation": {
+        "emailConfirmed": "Tu correo está confirmado",
+        "error": {
+            "invalidCode": "Código invalido",
+            "tooManyFailedAttempts": "¡Demasiados intentos fallidos! Para volver a intentarlo, haz clic en 'Reenviar código de verificaciuón'.",
+            "tooManyFailedAttemptsWait": "¡Demasiados intentos fallidos! Espera y luego haz clic en 'Reenviar código de verificación'."
+        },
+        "goToDashboard": "Ir al panel de control",
+        "input": {
+            "verificationCode": "Código de verificación"
+        },
+        "resendVerificationCode": "Volver a enviar código de verificación",
+        "signOut": "Salir",
+        "title": "Verifica tu correo",
+        "verificationCodeSentToEmail": "Hemos enviado un correo con un código de verificación a  {{email}}. Por favor utiliza el código del mensaje abajo."
+    },
+    "generic": {
+        "approve": "Aprobar",
+        "back": "Volver",
+        "cancel": "Cancelar",
+        "confirm": "Confirmar",
+        "create": "Crear",
+        "delete": "Eliminar",
+        "loading": "Cargando",
+        "next": "Siguiente",
+        "preview": "Vista previa",
+        "refreshPreview": "Actualizar vista previa",
+        "reset": "Reiniciar",
+        "save": "Guardar",
+        "submit": "Enviar",
+        "unapprove": "No aprobar"
+    },
+    "home": {
+        "welcome": "Bienvenido"
+    },
+    "instruction": {
+        "list": {
+            "title": "Instrucciones"
+        },
+        "update": {
+            "input": {
+                "language": "Idioma",
+                "questionType": "Tipo de pregunta",
+                "text": "Texto"
+            },
+            "title": "Instrucción"
+        }
+    },
+    "listeningAudio": {
+        "list": {
+            "title": "Arhcivo de audio"
+        },
+        "update": {
+            "input": {
+                "language": "Idioma",
+                "level": "Nivel",
+                "title": "Título"
+            },
+            "title": "Archivo de audio"
+        }
+    },
+    "listeningQuestion": {
+        "list": {
+            "title": "Preguntas de audio"
+        },
+        "update": {
+            "addAnswer": "Añadir respuesta",
+            "answers": "Respuestas",
+            "input": {
+                "answerType": "Tipo de respuesta",
+                "audio": "Audio",
+                "correct": "Correcto",
+                "language": "Idioma",
+                "level": "Nivel",
+                "question": "Pregunta"
+            },
+            "title": "Pregunta de audio"
+        }
+    },
+    "listeningQuestionPlayer": {
+        "manyPlaysRemaining": "Puedes escuchar el audio {{count}} veces",
+        "noPlaysRemaining": "Ya no puedes escuhcar más",
+        "onePlayRemaining": "Puedes escuchar al audio una vez más",
+        "playAudio": "Escuchar audio"
+    },
+    "login": {
+        "error": {
+            "invalidEmailOrPassword": "Correo o contraseña invalido"
+        },
+        "forgotYourPassword": "¿Has olvidado tu contraseña?",
+        "input": {
+            "email": "Dirección de correo",
+            "password": "Contraseña"
+        },
+        "register": "Registra tu escuela u organización",
+        "signIn": "Iniciar sesión",
+        "title": "Iniciar sesión en tu cuenta"
+    },
+    "multipleChoiceQuestionEditor": {
+        "addOptions": "Añadir opciones",
+        "addText": "Añadir textos",
+        "input": {
+            "correct": "Correcto",
+            "text": "Texto"
+        },
+        "options": "Opciones",
+        "removeLastPart": "Eliminar {{lastPart}}"
+    },
+    "navigationMenu": {
+        "about": "Información",
+        "formTest": "",
+        "home": "Página de inicio",
+        "instructions": "Instrucciones",
+        "listeningAudio": "Archivo de audio",
+        "listeningQuestions": "Preguntas de audio",
+        "myProfile": "Mi perfil",
+        "organizationUsers": "Usuarios de la organización",
+        "readingQuestionTexts": "Textos de lectura",
+        "readingQuestions": "Preguntas de comprensión lectura",
+        "signOut": "Salir",
+        "useOfLanguageQuestions": "Preguntas de uso de la lengua",
+        "users": "Usuarios"
+    },
+    "organizationUser": {
+        "list": {
+            "title": "Usuarios de la organización"
+        },
+        "update": {
+            "input": {
+                "admin": "Administración",
+                "email": "Correo electrónico",
+                "name": "Nombre",
+                "password": "Contraseña"
+            }
+        }
+    },
+    "privacyPolicy": {
+        "title": "Politica de privacidad"
+    },
+    "readingQuestion": {
+        "list": {
+            "title": "Preguntas de lectura"
+        },
+        "update": {
+            "addAnswer": "Añadir respuesta",
+            "answers": "Respuestas",
+            "input": {
+                "answerType": "Tipo de respuesta",
+                "correct": "Correcto",
+                "language": "Idioma",
+                "level": "Nivel",
+                "question": "Pregunta",
+                "text": "Texto"
+            },
+            "title": "Pregunta de comprensión lectiva"
+        }
+    },
+    "readingQuestionText": {
+        "list": {
+            "title": "Texos de lectura"
+        },
+        "update": {
+            "addQuestion": "Añadir pregunta",
+            "input": {
+                "language": "Idioma",
+                "level": "Nivel",
+                "text": "Texto",
+                "title": "Título"
+            },
+            "title": "Texto de lectura"
+        }
+    },
+    "registration": {
+        "alreadyHaveAnAccount": "¿Ya tienes cuenta? Enta aquí",
+        "error": {
+            "emailRegistered": "Esta dirección de correo ya está registrada"
+        },
+        "input": {
+            "confirmPassword": "Confirmar contraseña",
+            "email": "Correo electónico",
+            "name": "Tu nombre",
+            "organizationName": "Nombre de tu organización",
+            "password": "Contraseña"
+        },
+        "register": "Regsitrar",
+        "title": "Crear una cuenta"
+    },
+    "resetPassword": {
+        "backToSignIn": "Volver a iniciar sesión",
+        "input": {
+            "email": "Correo electrónico"
+        },
+        "resetEmailSent": "Mensaje para cambiar contraseña enviado. Busca el mensaje con instrucciones en tu buzon de correo.",
+        "title": "Cambiar contraseña"
+    },
+    "setNewPassword": {
+        "backToSignIn": "Volver a inicar sesión",
+        "input": {
+            "confirmPassword": "Confirmar contraseña",
+            "password": "Contraseña"
+        },
+        "title": "Cambiar contraseña"
+    },
+    "singleAnswerQuestionEditor": {
+        "addAnswer": "Añadir respuesta",
+        "answers": "Respuestas",
+        "input": {
+            "answerType": "Tipo de respuesta",
+            "correct": "Correcto",
+            "questionText": "Texto de la pregunta"
+        }
+    },
+    "singleGapQuestionEditor": {
+        "addAnswer": "Añadir respuesta",
+        "input": {
+            "answer": "Respuesta",
+            "caseSensitive": "Distinguir mayúsculas y minúsculas",
+            "textAfter": "Texto después",
+            "textBefore": "Texto anterior"
+        }
+    },
+    "singleGapQuestionPlayer": {
+        "caseSensitiveAnswers": "Las respuestas distinguen entre mayúsculas y minúsculas."
+    },
+    "useOfLanguageQuestion": {
+        "list": {
+            "title": "Preguntas de uso de la lengua"
+        },
+        "update": {
+            "input": {
+                "instruction": "Instrucción",
+                "language": "Idioma",
+                "level": "Nivel",
+                "questionType": "Tipo de pregunta",
+                "title": "Título"
+            },
+            "title": "Pregunta de uso de la lengua"
+        }
+    }
+}

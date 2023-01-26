@@ -1,0 +1,91 @@
+<div>
+    <ng-template #rt let-r="result" let-t="item">
+        <ng-container *ngIf="defaultTmpl">
+            <ng-container *ngIf="r.isDefault">
+                <ng-container *ngTemplateOutlet="defaultTmpl"></ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="!r.isDefault">
+                <ng-container *ngTemplateOutlet="optionTmpl, context: { $implicit: r.entity }"></ng-container>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="!defaultTmpl">
+            <ng-container *ngTemplateOutlet="optionTmpl, context: { $implicit: r }"></ng-container>
+        </ng-container>
+
+    </ng-template>
+
+    <label class="block text-sm font-medium text-gray-700 pb-2" *ngIf="label.length">
+        {{label}}
+    </label>
+
+    <div *ngIf="!shouldShowReadOnlySelect()">
+        <input type="text"
+               class="shadow-sm block w-full border-gray-300 rounded-md
+                      focus:ring-blue-500 focus:border-blue-500
+                      sm:text-sm"
+               [(ngModel)]="selectedEntity"
+               [ngbTypeahead]="search"
+               [resultTemplate]="rt"
+               [popupClass]="penis"
+               [inputFormatter]="formatInput"
+               (focus)="focus$.next($event.target.value)"
+               (click)="click$.next($event.target.value)"
+               (selectItem)="onSelected()"
+               #instance="ngbTypeahead"
+               (focusout)="onFocusOut()" />
+
+        <div class="absolute" *ngIf="isLoading">
+            <i class="loader"></i>
+        </div>
+    </div>
+
+    <div class="cursor-pointer" *ngIf="shouldShowReadOnlySelect()">
+        <div class="truncate bg-white relative w-full border border-gray-300 rounded-md 
+                    shadow-sm pl-3 pr-3 py-2 text-left focus:outline-none focus:ring-1 
+                    focus:ring-blue-500 focus:border-blue-500 sm:text-sm
+                    flex items-center"
+             *ngIf="selectedEntity"
+             (click)="openDropdown($event)">
+
+            <div class="flex-grow">
+                <ng-container *ngIf="defaultTmpl">
+                    <ng-container *ngIf="selectedEntity.isDefault">
+                        <ng-container *ngTemplateOutlet="defaultTmpl"></ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="!selectedEntity.isDefault">
+                        <ng-container *ngTemplateOutlet="optionTmpl, context: { $implicit: selectedEntity.entity }"></ng-container>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container *ngIf="!defaultTmpl">
+                    <ng-container *ngTemplateOutlet="optionTmpl, context: { $implicit: selectedEntity }"></ng-container>
+                </ng-container>
+            </div>
+
+            <div (click)="removeSelection()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </div>
+        </div>
+
+        <button type="button"
+                class="block bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                *ngIf="!selectedEntity"
+                (click)="openDropdown($event)">
+            <div *ngIf="noItemSelectedTmpl">
+                <ng-container *ngTemplateOutlet="noItemSelectedTmpl, context: { $implicit: selectedEntity }"></ng-container>
+            </div>
+            <div *ngIf="!noItemSelectedTmpl">
+                ---
+            </div>
+
+            <div class="icon-container" *ngIf="isLoading">
+                <i class="loader"></i>
+            </div>
+        </button>
+    </div>
+</div>

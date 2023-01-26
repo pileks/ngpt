@@ -1,0 +1,134 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>439a53c6-1790-4068-bd5d-63e901087e42</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.49.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Controllers\MultipleChoiceQuestions\Models\**" />
+    <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Controllers\MultipleChoiceQuestions\Models\**" />
+    <EmbeddedResource Remove="Controllers\MultipleChoiceQuestions\Models\**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Remove="Controllers\MultipleChoiceQuestions\Models\**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json.template" />
+    <None Remove="EmailTemplates\Invitation\Invitation.html" />
+    <None Remove="EmailTemplates\Invitation\Invitation.txt" />
+    <None Remove="EmailTemplates\OrganizationUserInvitation\OrganizationUserInvitation.html" />
+    <None Remove="EmailTemplates\OrganizationUserInvitation\OrganizationUserInvitation.txt" />
+    <None Remove="EmailTemplates\PlacementTestInvitation\PlacementTestInvitation.html" />
+    <None Remove="EmailTemplates\PlacementTestInvitation\PlacementTestInvitation.txt" />
+    <None Remove="nlog.config.template" />
+    <None Remove="Properties\launchSettings.json.template" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json.template" />
+    <Content Include="nlog.config.template" />
+    <Content Include="Properties\launchSettings.json.template" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\augurnet\Augur.Emails\Augur.Emails.csproj" />
+    <ProjectReference Include="..\augurnet\Augur.Web\Augur.Web.csproj" />
+    <ProjectReference Include="..\Ngpt.Bll\Ngpt.Bll.csproj" />
+    <ProjectReference Include="..\Ngpt.Data\Ngpt.Data.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.FileResources.Web\Ngpt.Platform.FileResources.Web.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.Identity.Data\Ngpt.Platform.Identity.Data.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.Identity.Web\Ngpt.Platform.Identity.Web.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.Multitenancy\Ngpt.Platform.Multitenancy.Data.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.Services\Ngpt.Platform.Services.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.Web\Ngpt.Platform.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="EmailTemplates\AddPartner\AddPartner.html" />
+    <None Remove="EmailTemplates\AddPartner\AddPartner.txt" />
+    <None Remove="EmailTemplates\RemovePartner\RemovePartner.html" />
+    <None Remove="EmailTemplates\RemovePartner\RemovePartner.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="EmailTemplates\AddPartner\AddPartner.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\AddPartner\AddPartner.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\Invitation\Invitation.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\Invitation\Invitation.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\PlacementTestInvitation\PlacementTestInvitation.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\PlacementTestInvitation\PlacementTestInvitation.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\RemovePartner\RemovePartner.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\RemovePartner\RemovePartner.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\OrganizationUserInvitation\OrganizationUserInvitation.html">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates\OrganizationUserInvitation\OrganizationUserInvitation.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

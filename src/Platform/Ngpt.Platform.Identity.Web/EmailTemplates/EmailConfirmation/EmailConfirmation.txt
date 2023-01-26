@@ -1,0 +1,11 @@
+Hi there, {{usersName}}!
+
+Welcome to Ngpt!
+Your email verification code is:
+
+{{emailVerificationCode}}
+
+Use it to verify your email and activate your account.
+
+Best regards,
+The Ngpt Team

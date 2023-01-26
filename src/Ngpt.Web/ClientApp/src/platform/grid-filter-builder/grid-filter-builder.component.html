@@ -1,0 +1,114 @@
+<div class="flex flex-col gap-4">
+    <ng-container *ngFor="let filter of filterModels">
+        <div class="flex flex-row gap-4">
+            <div class="flex-1">
+                <app-select [(ngModel)]="filter.metadata"
+                            [items]="_filterMetadata"
+                            (ngModelChange)="onFilterMetadataChange(filter)">
+                    <ng-template #option
+                                 let-metadata>
+                        {{ metadata.title }}
+                    </ng-template>
+                </app-select>
+            </div>
+            <div class="flex-1">
+                <ng-container *ngIf="filter.metadata">
+                    <app-select [(ngModel)]="filter.operator"
+                                [items]="filter.metadata.operators"
+                                itemKey="operator">
+                        <ng-template #option
+                                     let-operator>
+                            {{ operator.title }}
+                        </ng-template>
+                    </app-select>
+                </ng-container>
+            </div>
+            <div class="flex-1">
+                <ng-container *ngIf="filter.metadata">
+                    <ng-container *ngIf="filter.metadata.type === 'string'">
+                        <app-text-input [(ngModel)]="filter.value">
+                        </app-text-input>
+                    </ng-container>
+                    <ng-container *ngIf="filter.metadata.type === 'number'">
+                        <app-number-input [(ngModel)]="filter.value">
+                        </app-number-input>
+                    </ng-container>
+                    <ng-container *ngIf="filter.metadata.type === 'Date'">
+                        <app-date-picker [(ngModel)]="filter.value">
+                        </app-date-picker>
+                    </ng-container>
+                    <ng-container *ngIf="filter.metadata.type === 'boolean'">
+                        <app-select [(ngModel)]="filter.value"
+                                    [items]="booleanValues"
+                                    itemKey="value">
+                            <ng-template #option
+                                         let-item>
+                                {{ item.title }}
+                            </ng-template>
+                        </app-select>
+                    </ng-container>
+                    <ng-container *ngIf="filter.metadata.isAugurEntity">
+                        <app-entity-select [(ngModel)]="filter.value"
+                                           [listItems]="entityResolver.resolve(filter.metadata.type).endpoint">
+                            <ng-template #option
+                                         let-item>
+                                {{ entityResolver.resolve(filter.metadata.type).map(item) }}
+                            </ng-template>
+                        </app-entity-select>
+                    </ng-container>
+                    <ng-container *ngIf="filter.metadata.isEnum">
+                        <app-select [(ngModel)]="filter.value"
+                                    [items]="enumResolver.resolve(filter.metadata.type)"
+                                    itemKey="value">
+                            <ng-template #option
+                                         let-item>
+                                {{ item.title }}
+                            </ng-template>
+                        </app-select>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <button type="button"
+                    (click)="removeFilter(filter)"
+                    class="btn btn-sm btn-indigo-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="h-4 w-4"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+            </button>
+        </div>
+    </ng-container>
+    <div class="flex flex-row justify-between">
+        <button type="button"
+                (click)="addFilter()"
+                class="btn btn-sm btn-indigo-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="h-4 w-4"
+                 viewBox="0 0 20 20"
+                 fill="currentColor">
+                <path fill-rule="evenodd"
+                      d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                      clip-rule="evenodd" />
+            </svg>
+            <span class="pl-2">Add filter</span>
+        </button>
+        <div class="flex gap-1">
+            <button type="button"
+                    (click)="clearFilters()"
+                    class="btn btn-sm btn-white">
+                Clear filters
+            </button>
+            <button type="button"
+                    (click)="applyFilters()"
+                    class="btn btn-sm btn-indigo">
+                Apply filters
+            </button>
+        </div>
+    </div>
+</div>

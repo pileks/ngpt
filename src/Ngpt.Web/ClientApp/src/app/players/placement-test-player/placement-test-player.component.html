@@ -1,0 +1,83 @@
+<ng-container *ngIf="!isPlacementTestLoading">
+
+    <ng-container *ngIf="screen === 'useOfLanguage'">
+        <ng-container *ngIf="!areQuestionsLoading">
+            <div class="space-y-4">
+                <div *ngIf="debug"
+                     class="pb-4 space-y-4">
+                    <div class="grid grid-cols-2">
+                        <div class="text-center">
+                            <strong>Player stats:</strong> <br />
+                            Rating: <strong>{{placementTest.rating}}</strong><br />
+                            RD: <strong>{{placementTest.rd}}</strong><br />
+                            Vol: <strong>{{placementTest.vol}}</strong><br />
+                        </div>
+                        <div class="text-center">
+                            Algorithm Tau: <strong>{{glicko2Settings.tau}}</strong><br />
+                            Question RD: <strong>{{glicko2Settings.rd}}</strong><br />
+                            Question Vol: <strong>{{glicko2Settings.vol}}</strong><br />
+                            RD Cutoff: <strong>{{testRdCutoff}}</strong><br />
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="btn btn-md btn-blue"
+                                type="button"
+                                (click)="debugSkipQuestion(true)">
+                            Success
+                        </button>
+                        <button class="btn btn-md btn-blue"
+                                type="button"
+                                (click)="debugSkipQuestion(false)">
+                            Fail
+                        </button>
+                    </div>
+                </div>
+
+                <ng-container *ngFor="let question of questions; let idx = index">
+                    <ng-container *ngIf="currentQuestionIdx === idx">
+                        <div *ngIf="debug"
+                             class="text-center mb-4">
+                            Question rating: <strong>{{questions[idx].level.rating}}</strong>
+                        </div>
+                        <div class="rounded max-w-screen-md mx-auto shadow-md ring-1 ring-gray-900 ring-opacity-10">
+                            <app-use-of-language-question-player [question]="questions[idx]"
+                                                                 (answerChange)="onQuestionAnswer($event)">
+                            </app-use-of-language-question-player>
+                        </div>
+                    </ng-container>
+                </ng-container>
+
+                <div class="flex justify-center">
+                    <button class="btn btn-md btn-blue"
+                            type="button"
+                            (click)="goToNextQuestion()"
+                            [disabled]="!canMoveToNextQuestion">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="areQuestionsLoading">
+            Loading questions...
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="screen === 'reading'">
+        <div class="rounded max-w-screen-md mx-auto shadow-md ring-1 ring-gray-900 ring-opacity-10">
+            <app-reading-test-player (onComplete)="completeReading($event)"
+                                     [text]="readingText"
+                                     [questions]="readingQuestions">
+            </app-reading-test-player>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="screen === 'listening'">
+        <div class="rounded max-w-screen-md mx-auto shadow-md ring-1 ring-gray-900 ring-opacity-10">
+            <app-listening-test-player (onComplete)="completeListening($event)"
+                                       [audio]="listeningAudio"
+                                       [questions]="listeningQuestions">
+            </app-listening-test-player>
+        </div>
+    </ng-container>
+
+</ng-container>

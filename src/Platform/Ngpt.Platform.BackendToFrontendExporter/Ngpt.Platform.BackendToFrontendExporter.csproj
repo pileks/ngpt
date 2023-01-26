@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+    <None Remove="appsettings.json.template" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json.template">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\augurnet\Augur.BackendToFrontendExporter\Augur.BackendToFrontendExporter.csproj" />
+    <ProjectReference Include="..\..\augurnet\Augur.Data\Augur.Data.csproj" />
+    <ProjectReference Include="..\..\augurnet\Augur.Security\Augur.Security.csproj" />
+    <ProjectReference Include="..\..\Ngpt.Web\Ngpt.Web.csproj" />
+    <ProjectReference Include="..\Ngpt.Platform.Web\Ngpt.Platform.Web.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call &quot;$(SolutionDir)\Platform\Ngpt.Platform.BackendToFrontendExporter\bin\$(ConfigurationName)\net5.0\Ngpt.Platform.BackendToFrontendExporter.exe&quot;" />
+  </Target>
+
+</Project>

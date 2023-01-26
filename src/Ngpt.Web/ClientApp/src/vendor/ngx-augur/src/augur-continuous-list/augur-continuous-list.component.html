@@ -1,0 +1,15 @@
+<div class="continuous-list">
+    <ul class="list-group">
+        <ng-container *ngFor="let item of items">
+            <button class="list-group-item list-group-item-action" (click)="itemAction(item)">
+                <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-container>
+            </button>
+        </ng-container>
+    </ul>
+    <div class="list-footer">
+        <ng-container *ngIf="!isLoading">
+            <ng-container *ngTemplateOutlet="footerTemplate; context: { loadMore: loadMore, isMoreDataAvailable: isMoreDataAvailable }"></ng-container>
+        </ng-container>
+        <augur-loading-indicator [loading]="isLoading"></augur-loading-indicator>
+    </div>
+</div>

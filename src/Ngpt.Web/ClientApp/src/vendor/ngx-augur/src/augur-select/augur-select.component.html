@@ -1,0 +1,5 @@
+<div>
+  <select class="custom-select" name="pageSize" [(ngModel)]="model" name="{{labelFrom}}" *ngIf="options">
+    <option *ngFor="let option of this.options" [ngValue]="option.value">{{option.label}}</option>
+  </select>
+</div>

@@ -1,0 +1,73 @@
+<app-content-view>
+    <ng-template #header>
+        <div class="container mx-auto">
+            <div class="max-w-screen-md mx-auto">
+                <img class="h-32 w-auto -ml-3 -mb-4"
+                     src="assets/img/logo.svg"
+                     alt="NGPT logo">
+                <h2 class="text-xl font-semibold">
+                    Begin your placement test <ng-container *ngIf="selectedLanguage">- {{ selectedLanguage.name }}</ng-container>
+                </h2>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template #body>
+        <div class="container mx-auto">
+            <div class="max-w-screen-md mx-auto">
+                <ng-container *ngIf="!isInvitationSent">
+                    <form #form="ngForm"
+                          (ngSubmit)="start()"
+                          class="grid grid-cols-1 gap-4">
+
+                        <div *ngIf="!hideLanguageField">
+                            <app-entity-select [(ngModel)]="model.languageId"
+                                               [entityApiController]="languagesController"
+                                               label="{{ 'useOfLanguageQuestion.update.input.language' | translate }}"
+                                               name="language"
+                                               required>
+                                <ng-template #option
+                                             let-item>
+                                    {{ item.name }}
+                                </ng-template>
+                            </app-entity-select>
+                        </div>
+
+                        <div>
+                            <app-text-input [(ngModel)]="model.email"
+                                            required
+                                            label="Please enter your email address:"
+                                            name="email">
+                            </app-text-input>
+                        </div>
+
+                        <div>
+                            <app-toggle [(ngModel)]="model.hasGivenMarketingPermission"
+                                        label="Notify me about updates on NGPT (max. 1 email per month)"
+                                        name="hasGivenMarketingPermission">
+                            </app-toggle>
+                        </div>
+
+                        <div class="text-gray-700 text-sm font-medium">
+                            You will receive an email with a link for your personal placement test.
+                        </div>
+
+                        <div>
+                            <button type="submit"
+                                    class="btn btn-md btn-blue"
+                                    [disabled]="!form.valid || isLoading || !model.languageId">
+                                Take placement test
+                            </button>
+                        </div>
+                    </form>
+                </ng-container>
+                <ng-container *ngIf="isInvitationSent">
+                    <div class="text-gray-700 font-medium">
+                        Email with test link sent to <strong>{{ model.email }}</strong> <br />
+                        Please make sure to check your spam folder in case you don&apos;t receive an email within a few minutes.
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-template>
+</app-content-view>

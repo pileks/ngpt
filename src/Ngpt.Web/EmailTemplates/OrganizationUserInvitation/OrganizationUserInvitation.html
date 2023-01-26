@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+
+	<title>Invitation</title>
+
+	<style type="text/css">
+		.text-center {
+			text-align: center;
+		}
+
+		h2, h3, p, b {
+			font-family: Roboto, Arial, sans-serif;
+		}
+
+		p {
+			font-size: 1rem;
+			line-height: 1.75rem;
+		}
+
+		.gfs-logo {
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img class="gfs-logo" alt="Ngpt logo" src="{{logoUrl}}" />
+
+		<h2>Dear {{name}},</h2>
+
+		<p>
+            Welcome to Next Generation Placement Tests!<br/>
+
+			You were invited to participate under {{orgName}}.<br />
+
+			You can log in by following this link: 
+
+			<a href="{{applicationUrl}}">here</a><br />
+
+            Your login details are:<br />
+
+			User name: {{email}}<br />
+
+			Password: {{password}}<br />
+
+			For security, please remember to change your password after your first login.<br />
+		</p>
+		<p>
+			Kind regards,
+		</p>
+		<p>
+			<b>NGPT</b>
+		</p>
+	</div>
+</body>
+</html>

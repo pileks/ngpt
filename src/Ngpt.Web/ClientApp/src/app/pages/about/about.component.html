@@ -1,0 +1,24 @@
+<app-page-with-navigation-menu>
+    <ng-template #navigation>
+        <app-navigation-menu></app-navigation-menu>
+    </ng-template>
+
+    <ng-template #content>
+        <app-content-view>
+            <ng-template #header>
+                <div class="container mw-750">
+                    <h4>
+                        {{ 'about.title' | translate }} Ngpt
+                    </h4>
+                </div>
+            </ng-template>
+            <ng-template #body>
+
+                <div class="container mw-750">
+                    <p>
+                    </p>
+                </div>
+            </ng-template>
+        </app-content-view>
+    </ng-template>
+</app-page-with-navigation-menu>

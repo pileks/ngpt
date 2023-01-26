@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\augurnet\Augur.Data\Augur.Data.csproj" />
+    <ProjectReference Include="..\augurnet\Augur.Security\Augur.Security.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.FileResources.Data\Ngpt.Platform.FileResources.Data.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.Identity.Data\Ngpt.Platform.Identity.Data.csproj" />
+    <ProjectReference Include="..\Platform\Ngpt.Platform.Multitenancy\Ngpt.Platform.Multitenancy.Data.csproj" />
+  </ItemGroup>
+
+</Project>

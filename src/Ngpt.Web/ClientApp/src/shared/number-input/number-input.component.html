@@ -1,0 +1,25 @@
+<label *ngIf="label"
+       [for]="innerId"
+       class="block text-sm font-medium text-gray-700 hover:cursor-pointer pb-2 invalid-label">
+       {{ label }}
+</label>
+
+<input type="number"
+       [id]="innerId"
+       [step]="step"
+       [disabled]="disabled"
+       [(ngModel)]="value"
+       (ngModelChange)="updateChanges()"
+       (blur)="onTouched()"
+       class="shadow-sm block w-full border-gray-300 rounded-md
+              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
+              sm:text-sm disabled:opacity-75 invalid-control"
+       [ngClass]="{ 
+           'text-right': alignment === 'right', 
+           'tabular-nums': display === 'tabular'
+       }" />
+
+<p *ngIf="helpText.length"
+   class="mt-2 text-sm text-gray-500 invalid-label">
+       {{ helpText }}
+</p>

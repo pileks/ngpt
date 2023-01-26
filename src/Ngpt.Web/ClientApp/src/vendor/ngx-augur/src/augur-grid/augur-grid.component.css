@@ -1,0 +1,46 @@
+.augur-grid-row>.augur-grid-td {
+  padding: .75rem !important;
+  vertical-align: top !important;
+}
+
+.augur-grid-header-row>.augur-grid-th {
+  padding: .75rem !important;
+  vertical-align: top !important;
+}
+
+.augur-grid-row.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.augur-grid-header-row.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.augur-grid .augur-selectable-row:hover {
+  cursor: pointer;
+  background-color: #bfbeff !important;
+}
+
+.augur-grid-header-row {
+  background-color: #4189c7;
+  color: white !important;
+  font-size: 15px !important;
+}
+
+.augur-grid {
+  background: #fff;
+}
+
+.augur-grid-elevation {
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+
+.flex-align-right {
+  justify-content: flex-end;
+}
+
+.align-center {
+  display: flex; align-items: center;
+}

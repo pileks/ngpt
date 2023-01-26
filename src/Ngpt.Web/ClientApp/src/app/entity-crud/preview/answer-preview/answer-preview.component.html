@@ -1,0 +1,8 @@
+<p *ngIf="correct"
+   class="block mx-auto max-w-screen-md p-4 border-2 border-dashed border-green-300 bg-green-100 rounded">
+    {{ 'answerPreview.correct' | translate }}
+</p>
+<p *ngIf="!correct"
+   class="block mx-auto max-w-screen-md p-4 border-2 border-dashed border-red-300 bg-red-100 rounded">
+    {{ 'answerPreview.incorrect' | translate }}
+</p>

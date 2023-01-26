@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col">
+        <ng-container *ngIf="editing">
+            <input type="file" class="btn-m" (change)="chooseFile($event.target.files[0])" />
+
+            <button type="button" class="btn btn-success btn-m" [disabled]="disabled || !file" (click)="submitFile()">
+                Submit
+            </button>
+
+            <button type="button" class="btn btn-danger btn-m" [disabled]="disabled" (click)="closeUploadInterface()">
+                <fa-icon icon="times"></fa-icon>
+            </button>
+        </ng-container>
+
+        <button *ngIf="!editing" [disabled]="disabled" type="button" class="btn btn-success btn-m" (click)="addFile()">
+            Add {{label}}
+        </button>
+    </div>
+</div>

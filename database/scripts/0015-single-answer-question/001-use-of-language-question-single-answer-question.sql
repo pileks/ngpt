@@ -1,0 +1,3 @@
+alter table dbo.UseOfLanguageQuestions
+add SingleAnswerQuestionId int null 
+constraint FK_UseOfLanguageQuestion_SingleAnswerQuestion foreign key references dbo.SingleAnswerQuestions(Id);

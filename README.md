@@ -1,7 +1,5 @@
 # Next Generation Placement Tests
 
-This is the public repository for the [NGPT Project](https://nextgenplacement.org/) and [its associated application](https://app.nextgenplacement.org/).
-
 ## Setup & configuration
 
 ### Requirements
